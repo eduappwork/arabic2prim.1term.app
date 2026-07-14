@@ -1,0 +1,13 @@
+{
+  "name": "رحلتي مع اللغة العربية - الصف الثاني الابتدائي",
+  "short_name": "رحلتي العربية",
+  "description": "تطبيق تفاعلي لمنهج اللغة العربية للصف الثاني الابتدائي - الفصل الدراسي الأول",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f7f0df",
+  "theme_color": "#073b5c"
+}

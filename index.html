@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#083c5d">
+  <meta name="description" content="تطبيق تفاعلي لمنهج اللغة العربية للصف الثاني الابتدائي - الفصل الدراسي الأول">
+  <title>اللغة العربية - الصف الثاني الابتدائي</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/images/dashboard-hero.webp">
+  <link rel="preload" href="assets/fonts/cairo-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/baloo-bhaijaan-2-arabic-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face{font-family:CairoApp;src:url('assets/fonts/cairo-arabic-400-normal.woff2') format('woff2');font-weight:400;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFC}
+    @font-face{font-family:CairoApp;src:url('assets/fonts/cairo-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215}
+    @font-face{font-family:CairoApp;src:url('assets/fonts/cairo-arabic-600-normal.woff2') format('woff2');font-weight:600;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFC}
+    @font-face{font-family:CairoApp;src:url('assets/fonts/cairo-latin-600-normal.woff2') format('woff2');font-weight:600;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215}
+    @font-face{font-family:CairoApp;src:url('assets/fonts/cairo-arabic-700-normal.woff2') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFC}
+    @font-face{font-family:CairoApp;src:url('assets/fonts/cairo-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215}
+    @font-face{font-family:CairoApp;src:url('assets/fonts/cairo-arabic-800-normal.woff2') format('woff2');font-weight:800 900;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFC}
+    @font-face{font-family:CairoApp;src:url('assets/fonts/cairo-latin-800-normal.woff2') format('woff2');font-weight:800 900;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215}
+    @font-face{font-family:BalooApp;src:url('assets/fonts/baloo-bhaijaan-2-arabic-700-normal.woff2') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFC}
+    @font-face{font-family:BalooApp;src:url('assets/fonts/baloo-bhaijaan-2-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215}
+    @font-face{font-family:BalooApp;src:url('assets/fonts/baloo-bhaijaan-2-arabic-800-normal.woff2') format('woff2');font-weight:800 900;font-display:swap;unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFC}
+    @font-face{font-family:BalooApp;src:url('assets/fonts/baloo-bhaijaan-2-latin-800-normal.woff2') format('woff2');font-weight:800 900;font-display:swap;unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215}
+    :root{
+      --navy:#073b5c;--navy2:#062a44;--cyan:#1ab8c7;--teal:#0d8f92;--gold:#ffbf3f;
+      --coral:#ff6b5e;--purple:#8357c7;--green:#40a96b;--ink:#16364a;--muted:#617789;
+      --paper:#fffdf7;--cream:#f7f0df;--white:#fff;--danger:#d94a52;--ok:#16835d;
+      --shadow:0 18px 45px rgba(9,46,70,.18);--soft:0 8px 24px rgba(9,46,70,.12);
+      --radius:26px;--radius-sm:17px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:CairoApp,Cairo,Tahoma,Arial,sans-serif;background:linear-gradient(145deg,#f8f3e8,#eefaff);color:var(--ink);min-height:100vh;overflow-x:hidden;font-weight:400}
+    h1,h2,h3,.btn,.eyebrow,.pill,.brand-text strong,.vocab-word,.quiz-count,.quiz-score{font-family:BalooApp,CairoApp,Cairo,Tahoma,sans-serif}
+    button,input,select,textarea{font:inherit}
+    button{border:0;cursor:pointer}
+    button:disabled{opacity:.45;cursor:not-allowed;filter:grayscale(.4)}
+    a{color:inherit}
+    .hidden{display:none!important}
+    .screen{min-height:100svh}
+    .glass{background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(255,255,255,.45));border:1px solid rgba(255,255,255,.72);box-shadow:0 22px 60px rgba(1,25,41,.28);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:49px;padding:11px 18px;border-radius:15px;font-weight:800;transition:.22s transform,.22s box-shadow,.22s background;box-shadow:var(--soft)}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(8,54,81,.19)}
+    .btn svg{width:22px;height:22px;flex:0 0 auto}
+    .btn-primary{color:#fff;background:linear-gradient(135deg,var(--cyan),var(--navy))}
+    .btn-gold{color:#412e00;background:linear-gradient(135deg,#ffd86a,var(--gold))}
+    .btn-ghost{color:var(--navy);background:rgba(255,255,255,.82);border:1px solid rgba(7,59,92,.12)}
+    .btn-danger{color:#fff;background:linear-gradient(135deg,#ef6870,var(--danger))}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.86);color:var(--navy);font-weight:800;font-size:.85rem;box-shadow:var(--soft)}
+    .pill{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:6px 10px;border-radius:999px;font-size:.82rem;font-weight:800;background:#edf8fb;color:var(--navy)}
+
+    /* Opening */
+    #splash{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:flex-start;padding:28px;overflow:hidden;background:#082f48}
+    #splash:before,#splash:after{content:"";position:absolute;inset:0;z-index:-2;background-position:center;background-repeat:no-repeat}
+    #splash:before{background-image:url('assets/images/opening-hero.webp');background-size:cover}
+    #splash:after{z-index:-1;background-image:linear-gradient(90deg,rgba(4,25,41,.02) 0%,rgba(4,25,41,.08) 44%,rgba(4,25,41,.66) 76%,rgba(4,25,41,.86) 100%)}
+    .splash-top{position:absolute;top:max(18px,env(safe-area-inset-top));left:20px;right:20px;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:4}
+    .splash-brand{color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.4);font-weight:900;font-size:clamp(1rem,2vw,1.32rem)}
+    .splash-card{width:min(535px,42vw);padding:28px;border-radius:31px;color:var(--ink);background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(238,250,252,.42));border:1px solid rgba(255,255,255,.72);box-shadow:0 28px 80px rgba(1,20,35,.38),inset 0 1px rgba(255,255,255,.78);backdrop-filter:blur(22px) saturate(145%);-webkit-backdrop-filter:blur(22px) saturate(145%)}
+    .splash-card h1{margin:10px 0 3px;font-size:clamp(1.75rem,4vw,2.65rem);line-height:1.25;color:var(--navy)}
+    .splash-card h2{margin:0 0 16px;font-size:clamp(.96rem,2vw,1.2rem);color:#31566d}
+    .form-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:10px}
+    .field{display:grid;gap:6px}
+    .field label{font-weight:800;font-size:.86rem;color:#36566b}
+    .field input{width:100%;min-height:51px;border-radius:14px;border:1.5px solid rgba(7,59,92,.15);background:rgba(255,255,255,.88);padding:10px 13px;color:var(--ink);outline:none;transition:.2s}
+    .field input:focus{border-color:var(--cyan);box-shadow:0 0 0 4px rgba(26,184,199,.14)}
+    .splash-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+    .splash-actions .btn-primary{grid-column:1/-1}
+    .splash-teacher-chip{display:grid;grid-template-columns:58px 1fr auto;align-items:center;gap:11px;margin-top:15px;padding:10px 11px;border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(228,246,249,.52));border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px rgba(255,255,255,.8)}
+    .splash-teacher-photo{width:58px;height:58px;border-radius:17px;object-fit:cover;object-position:center;border:3px solid rgba(255,255,255,.92);box-shadow:0 8px 18px rgba(6,42,63,.2)}
+    .splash-teacher-copy{min-width:0}
+    .splash-teacher-copy small{display:block;color:#607a8a;font-size:.7rem;font-weight:800;margin-bottom:2px}
+    .splash-teacher-copy strong{display:block;color:var(--navy);font-size:.82rem;line-height:1.5}
+    .splash-teacher-link{min-height:37px;padding:7px 10px;border-radius:12px;background:rgba(255,255,255,.84);color:var(--teal);font-size:.7rem;font-weight:900;box-shadow:none;border:1px solid rgba(13,143,146,.14)}
+    .developer-credit{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:11px;padding:9px 12px;border-radius:16px;background:rgba(4,38,59,.82);color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:0 9px 24px rgba(4,38,59,.15)}
+    .developer-credit-copy{display:grid;gap:1px;line-height:1.45}
+    .developer-credit-copy small{font-size:.64rem;color:#bcecf0;font-weight:700}
+    .developer-credit-copy strong{font-size:.78rem;font-weight:900}
+    .developer-socials{display:flex;align-items:center;gap:7px}
+    .developer-social{width:35px;height:35px;display:grid;place-items:center;border-radius:11px;color:#fff;text-decoration:none;transition:.2s transform,.2s box-shadow}
+    .developer-social:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.18)}
+    .developer-social svg{width:19px;height:19px;display:block}
+    .developer-social.facebook{background:#1877f2}.developer-social.whatsapp{background:#20b85a}
+    .splash-card>.developer-credit{display:none}
+    .floating-developer{display:none;position:fixed;z-index:125;left:max(9px,env(safe-area-inset-left));bottom:max(9px,env(safe-area-inset-bottom));filter:drop-shadow(0 9px 16px rgba(2,29,46,.18))}
+    .floating-developer.is-visible{display:block}
+    .floating-developer .developer-credit{width:auto;margin:0;padding:6px 8px;gap:8px;border-radius:14px;background:linear-gradient(155deg,rgba(5,48,73,.94),rgba(6,31,49,.93));border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px rgba(255,255,255,.08);backdrop-filter:blur(12px)}
+    .floating-developer .developer-credit-copy{text-align:right;gap:0;white-space:nowrap}
+    .floating-developer .developer-credit-copy small{font-size:.46rem;line-height:1.3}
+    .floating-developer .developer-credit-copy strong{font-size:.63rem;line-height:1.35}
+    .floating-developer .developer-socials{flex-direction:row;gap:5px}
+    .floating-developer .developer-social{width:29px;height:29px;border-radius:9px}
+    .floating-developer .developer-social svg{width:15px;height:15px}
+
+    /* App shell */
+    #shell{min-height:100vh}
+    .app-header{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:12px;padding:10px clamp(12px,3vw,28px);background:rgba(247,252,253,.9);border-bottom:1px solid rgba(7,59,92,.09);backdrop-filter:blur(16px);box-shadow:0 5px 20px rgba(7,59,92,.08)}
+    .brand{display:flex;align-items:center;gap:10px;min-width:0}
+    .brand-mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--coral));display:grid;place-items:center;color:#fff;box-shadow:var(--soft)}
+    .brand-mark svg{width:25px;height:25px}
+    .brand-text{min-width:0}
+    .brand-text strong{display:block;color:var(--navy);font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand-text small{color:var(--muted);font-size:.74rem}
+    .header-stats{margin-inline-start:auto;display:flex;gap:7px;align-items:center}
+    .stat-chip{display:flex;align-items:center;gap:6px;background:#fff;padding:7px 10px;border-radius:13px;box-shadow:0 4px 13px rgba(9,46,70,.09);font-weight:900;font-size:.8rem;color:var(--navy)}
+    .stat-chip svg{width:18px;height:18px;color:var(--coral)}
+    .stat-chip.reward-pop{animation:rewardPop .72s cubic-bezier(.2,.9,.25,1)}
+    @keyframes rewardPop{0%{transform:scale(1)}35%{transform:scale(1.2);background:#fff0b5;color:#6b4700;box-shadow:0 0 0 7px rgba(255,191,63,.22)}100%{transform:scale(1)}}
+    .header-actions{display:flex;gap:7px}
+    .icon-btn{width:41px;height:41px;border-radius:13px;display:grid;place-items:center;background:#fff;color:var(--navy);box-shadow:var(--soft)}
+    .icon-btn svg{width:22px;height:22px}
+    .teacher-header-btn{min-height:41px;padding:7px 13px;border-radius:13px;color:#fff;background:linear-gradient(135deg,var(--purple),var(--navy));font-size:.78rem;white-space:nowrap;box-shadow:var(--soft)}
+    .teacher-header-btn svg{width:19px;height:19px}
+    #view{width:min(1240px,100%);margin:auto;padding:clamp(14px,3vw,30px)}
+    .page-enter{animation:pageIn .45s cubic-bezier(.2,.85,.3,1) both}
+    @keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+    /* Dashboard */
+    .hero{min-height:370px;border-radius:32px;position:relative;overflow:hidden;background-size:cover;background-position:center;box-shadow:var(--shadow);display:flex;align-items:flex-end;padding:clamp(20px,4vw,38px);isolation:isolate}
+    .hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,30,51,.94) 0%,rgba(4,30,51,.7) 42%,rgba(4,30,51,.1) 72%)}
+    .hero-copy{width:min(600px,100%);color:#fff}
+    .hero h1{font-size:clamp(2rem,5vw,3.4rem);margin:9px 0;line-height:1.2}
+    .hero p{font-size:clamp(.92rem,2vw,1.13rem);line-height:1.8;color:#e7f8ff;margin:0 0 18px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:10px}
+    .progress-wrap{margin-top:18px}
+    .progress-label{display:flex;justify-content:space-between;gap:10px;font-size:.84rem;font-weight:800;margin-bottom:7px}
+    .progress-track{height:12px;border-radius:999px;background:rgba(255,255,255,.2);overflow:hidden;border:1px solid rgba(255,255,255,.2)}
+    .progress-fill{height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--gold),#fff09c);transition:width .7s ease}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:32px 0 14px}
+    .section-head h2{margin:0;color:var(--navy);font-size:clamp(1.35rem,3vw,2rem)}
+    .section-head p{margin:4px 0 0;color:var(--muted);font-size:.9rem}
+    .units-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .unit-card{position:relative;min-height:310px;border-radius:28px;overflow:hidden;background-size:cover;background-position:center;box-shadow:var(--shadow);display:flex;align-items:flex-end;isolation:isolate;transition:.3s transform}
+    .unit-card:hover{transform:translateY(-5px)}
+    .unit-card:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(4,28,44,.94),rgba(4,28,44,.06) 76%)}
+    .unit-card.locked:before{content:"";position:absolute;inset:0;background:rgba(10,28,40,.48);backdrop-filter:grayscale(.4);z-index:1}
+    .unit-card-body{padding:21px;color:#fff;width:100%;position:relative;z-index:2}
+    .unit-card h3{font-size:1.45rem;margin:8px 0 5px}
+    .unit-card p{margin:0;color:#e6f3f8;font-size:.86rem;line-height:1.7}
+    .unit-meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px}
+    .ring{--p:0;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--p)*1%),rgba(255,255,255,.2) 0);font-size:.72rem;font-weight:900;position:relative}
+    .ring:after{content:"";position:absolute;inset:5px;border-radius:50%;background:#173d52;z-index:-1}
+    .dash-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+    .dash-mini{padding:17px;border-radius:20px;background:#fff;box-shadow:var(--soft);display:flex;align-items:center;gap:12px}
+    .mini-icon{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--cyan),var(--navy));flex:0 0 auto}
+    .mini-icon svg{width:24px;height:24px}
+    .dash-mini strong{display:block;color:var(--navy);font-size:1.05rem}
+    .dash-mini small{color:var(--muted);font-size:.76rem}
+
+    /* Unit and lesson */
+    .cover-banner{min-height:330px;border-radius:31px;padding:clamp(20px,4vw,35px);background-size:cover;background-position:center;box-shadow:var(--shadow);display:flex;align-items:flex-end;position:relative;overflow:hidden;isolation:isolate;color:#fff}
+    .cover-banner:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,28,44,.93),rgba(4,28,44,.35) 62%,rgba(4,28,44,.08))}
+    .cover-copy{max-width:680px}
+    .cover-copy h1{font-size:clamp(2rem,5vw,3.35rem);line-height:1.2;margin:10px 0}
+    .cover-copy p{margin:0 0 16px;color:#e7f5fa;line-height:1.75}
+    .back-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+    .lessons-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .lesson-card{display:grid;grid-template-columns:190px 1fr;min-height:190px;border-radius:24px;background:#fff;overflow:hidden;box-shadow:var(--soft);transition:.25s transform;position:relative}
+    .lesson-card:hover{transform:translateY(-4px)}
+    .lesson-card.locked{filter:grayscale(.65);opacity:.7}
+    .lesson-img{background-size:cover;background-position:center;min-height:190px}
+    .lesson-info{padding:18px;display:flex;flex-direction:column;justify-content:center}
+    .lesson-info h3{margin:7px 0;color:var(--navy);font-size:1.25rem}
+    .lesson-info p{margin:0;color:var(--muted);line-height:1.7;font-size:.84rem}
+    .lesson-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px}
+    .lock-badge{position:absolute;top:12px;left:12px;z-index:2;width:39px;height:39px;border-radius:13px;background:rgba(7,31,45,.82);color:#fff;display:grid;place-items:center}
+    .story-card{margin-top:16px;background:linear-gradient(135deg,#5c3b86,#2f6b8c);color:#fff}
+    .story-card .lesson-info h3,.story-card .lesson-info p{color:#fff}
+    .sections-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+    .section-card{min-height:142px;border-radius:22px;background:#fff;box-shadow:var(--soft);padding:17px;text-align:right;display:flex;flex-direction:column;justify-content:space-between;transition:.25s transform;border:1px solid rgba(8,59,91,.06)}
+    .section-card:hover{transform:translateY(-4px)}
+    .section-icon{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--coral),var(--purple))}
+    .section-icon svg{width:24px;height:24px}
+    .section-card strong{color:var(--navy);font-size:1rem}
+    .section-card small{color:var(--muted);font-size:.75rem}
+
+    /* Content */
+    .content-panel{background:#fff;border-radius:26px;box-shadow:var(--shadow);padding:clamp(18px,4vw,34px)}
+    .content-panel h2{color:var(--navy);font-size:clamp(1.4rem,3vw,2.05rem);margin:0 0 13px}
+    .content-panel h3{color:var(--teal);margin:20px 0 10px}
+    .lead{font-size:1.06rem;line-height:2;color:#314e60}
+    .reading-box{background:linear-gradient(135deg,#fffdf4,#f0fbff);border:2px solid #e2f3f4;border-radius:22px;padding:22px;font-family:CairoApp,Cairo,Tahoma,sans-serif;font-size:clamp(1rem,2vw,1.22rem);line-height:2.15;white-space:pre-line}
+    .summary-list,.point-list{display:grid;gap:10px;margin:14px 0;padding:0;list-style:none}
+    .summary-list li,.point-list li{padding:12px 16px;border-radius:15px;background:#f3f9fb;border-right:5px solid var(--cyan);line-height:1.75}
+    .objectives{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+    .objective{padding:15px;border-radius:18px;background:linear-gradient(135deg,#effafd,#fff9e7);display:flex;gap:11px;align-items:flex-start;line-height:1.7}
+    .objective b{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:var(--navy);color:#fff;flex:0 0 auto}
+    .vocab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+    .vocab-card{height:175px;perspective:1000px;cursor:pointer}
+    .vocab-inner{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+    .vocab-card.flipped .vocab-inner{transform:rotateY(180deg)}
+    .vocab-face{position:absolute;inset:0;border-radius:21px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:17px;text-align:center;backface-visibility:hidden;box-shadow:var(--soft);border:1px solid rgba(7,59,92,.08)}
+    .vocab-front{background:linear-gradient(135deg,#fff,#ecfbfd)}
+    .vocab-back{transform:rotateY(180deg);background:linear-gradient(135deg,var(--navy),var(--teal));color:#fff}
+    .vocab-word{font-size:1.35rem;font-weight:900;color:var(--navy);margin-bottom:8px}
+    .vocab-back strong{font-size:1.02rem;margin-bottom:8px}
+    .vocab-back small{color:#dffaff;line-height:1.7}
+    .speak-btn{margin-top:8px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--navy)}
+    .speak-btn svg{width:20px;height:20px}
+    .examples{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .example{padding:15px;border-radius:16px;background:#fff8e5;border:1px solid #f3e1ad;line-height:1.75}
+    .tasks-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .task{border-radius:20px;padding:20px;background:linear-gradient(135deg,#f2fbfd,#fff);border:1px solid #dceff2}
+    .task h3{margin:0 0 10px}
+    .task textarea,.task input{width:100%;border:1.5px solid #d6e6ea;border-radius:13px;padding:11px;background:#fff;min-height:48px;outline:none}
+
+    /* Guided lesson journey */
+    .lesson-journey-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:25px 0 10px}
+    .lesson-journey-head h2{margin:0;color:var(--navy);font-size:clamp(1.4rem,3vw,2rem)}
+    .journey-progress{display:flex;align-items:center;gap:9px;min-width:190px}
+    .journey-progress .progress-track{flex:1;background:#dcecef;border-color:#d2e6eb}
+    .journey-progress strong{color:var(--navy);font-size:.82rem;white-space:nowrap}
+    .section-card{position:relative}
+    .section-card.done{background:linear-gradient(135deg,#effbf4,#fff);border-color:#bfe5cf}
+    .section-card.current{outline:3px solid rgba(26,184,199,.2);border-color:var(--cyan)}
+    .section-card.locked{opacity:.62;filter:grayscale(.45);cursor:not-allowed}
+    .section-card.done .section-icon{background:linear-gradient(135deg,var(--green),var(--teal))}
+    .step-state{display:inline-flex;align-items:center;gap:5px;margin-top:7px;font-size:.72rem;font-weight:900;color:var(--muted)}
+    .step-state svg{width:15px;height:15px}
+    .section-card.done .step-state{color:var(--ok)}
+    .warmup-intro{display:flex;gap:12px;align-items:flex-start;padding:16px;border-radius:19px;background:linear-gradient(135deg,#fff7dc,#f0fbff);margin-bottom:16px}
+    .warmup-intro .section-icon{flex:0 0 auto}
+    .warmup-intro h3{margin:0 0 5px;color:var(--navy)}
+    .warmup-intro p{margin:0;color:var(--muted);line-height:1.75}
+    .warmup-grid{display:grid;gap:13px}
+    .warmup-question{display:grid;gap:8px;padding:16px;border-radius:18px;background:#f7fbfc;border:1px solid #dcecef}
+    .warmup-question label{font-weight:900;color:var(--navy);line-height:1.7}
+    .warmup-question textarea{width:100%;min-height:92px;resize:vertical;border:1.5px solid #cfe2e7;border-radius:14px;padding:12px;background:#fff;outline:none;line-height:1.8}
+    .warmup-question textarea:focus,.task textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 4px rgba(26,184,199,.13)}
+    .video-shell{overflow:hidden;border-radius:24px;background:#071f31;box-shadow:var(--shadow);aspect-ratio:16/9;position:relative}
+    .video-shell iframe{width:100%;height:100%;border:0;display:block}
+    .video-placeholder{min-height:280px;display:grid;place-items:center;text-align:center;padding:28px;background:radial-gradient(circle at 30% 20%,#174d66,#071f31 70%);color:#fff}
+    .video-placeholder .section-icon{margin:auto auto 12px;background:linear-gradient(135deg,var(--gold),var(--coral))}
+    .video-placeholder h3{color:#fff;margin:0 0 8px}
+    .video-placeholder p{margin:0;color:#cfeaf4;line-height:1.8}
+    .video-note{display:flex;align-items:flex-start;gap:9px;margin-top:12px;padding:12px 14px;border-radius:15px;background:#eff8fb;color:#36586b;font-size:.83rem;line-height:1.7}
+    .video-note svg{width:20px;height:20px;color:var(--teal);flex:0 0 auto;margin-top:2px}
+    .confirm-box{margin-top:17px;padding:18px;border-radius:20px;background:linear-gradient(135deg,#fff9e7,#f3fbfd);border:1px solid #e9dfbd}
+    .confirm-box h3{margin:0 0 11px;color:var(--navy)}
+    .choice-row{display:flex;flex-wrap:wrap;gap:10px}
+    .choice-label{display:flex;align-items:center;gap:8px;padding:11px 16px;border-radius:14px;background:#fff;border:2px solid #dce8eb;font-weight:800;cursor:pointer}
+    .choice-label:has(input:checked){border-color:var(--cyan);background:#eafcff;color:var(--navy)}
+    .deep-dive{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:17px 0}
+    .deep-card{padding:17px;border-radius:19px;background:linear-gradient(145deg,#f1fbfd,#fffaf0);border:1px solid #dcecef}
+    .deep-card b{display:block;color:var(--teal);margin-bottom:7px;font-size:1rem}
+    .deep-card p{margin:0;color:#3d5869;line-height:1.85;font-size:.9rem}
+    .stage-check{margin-top:23px;padding:19px;border-radius:21px;background:#f4f8fb;border:1px solid #d9e8ed}
+    .stage-check.solved{background:#eaf9f0;border-color:#a8d8bd}
+    .stage-check h3{margin:0 0 8px;color:var(--navy)}
+    .stage-check p{margin:0 0 13px;line-height:1.75;font-weight:800}
+    .check-options{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+    .check-option{padding:12px 14px;border-radius:14px;background:#fff;border:2px solid #dce8eb;color:var(--ink);font-weight:800;text-align:right}
+    .check-option:hover{border-color:var(--cyan)}
+    .stage-check.solved .check-options{display:none}
+    .solved-message{display:flex;align-items:center;gap:8px;color:var(--ok);font-weight:900}
+    .solved-message svg{width:23px;height:23px}
+    .stage-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px;padding-top:18px;border-top:1px solid #e2ecef}
+    .stage-footer .hint{color:var(--muted);font-size:.82rem;line-height:1.6}
+    .unit-video-card{margin:18px 0;padding:20px;border-radius:25px;background:linear-gradient(135deg,#eaf9fb,#fff8e2);box-shadow:var(--soft)}
+    .unit-video-card h2{margin:0 0 5px;color:var(--navy)}
+    .unit-video-card>p{margin:0 0 14px;color:var(--muted)}
+
+    /* Quiz */
+    .quiz-shell{max-width:850px;margin:auto}
+    .quiz-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px}
+    .quiz-count{font-weight:900;color:var(--navy)}
+    .quiz-score{font-weight:900;color:var(--ok)}
+    .quiz-card{background:#fff;border-radius:28px;box-shadow:var(--shadow);padding:clamp(20px,4vw,35px);position:relative;overflow:hidden}
+    .quiz-question{font-size:clamp(1.25rem,3vw,1.8rem);line-height:1.65;color:var(--navy);margin:9px 0 20px}
+    .answers{display:grid;gap:11px}
+    .answer{width:100%;text-align:right;padding:15px 18px;border-radius:17px;background:#f5f9fb;color:var(--ink);border:2px solid transparent;font-weight:800;transition:.2s}
+    .answer:hover{border-color:#a7dce0;background:#f0feff}
+    .answer.correct{background:#e6faef;border-color:#43b77e;color:#126446}
+    .answer.wrong{background:#fff0f1;border-color:#ed7178;color:#9e2830}
+    .feedback{margin-top:16px;padding:15px;border-radius:17px;line-height:1.75;font-weight:700}
+    .feedback.ok{background:#e7faef;color:#146647;border:1px solid #8ad4ad}
+    .feedback.bad{background:#fff1f1;color:#8b2930;border:1px solid #f0a3a8}
+    .reward-note{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 10px;border-radius:999px;background:#fff3bd;color:#735000;font-size:.82rem;font-weight:900}
+    .quiz-next{margin-top:12px;display:flex;justify-content:flex-end}
+    .result-card{text-align:center;background:#fff;border-radius:30px;box-shadow:var(--shadow);padding:34px;max-width:720px;margin:auto}
+    .result-medal{width:100px;height:100px;border-radius:50%;margin:auto;display:grid;place-items:center;background:linear-gradient(135deg,#ffd769,#f29c38);color:#fff;box-shadow:0 14px 35px rgba(230,159,41,.35)}
+    .result-medal svg{width:54px;height:54px}
+    .result-card h2{font-size:2rem;color:var(--navy);margin:17px 0 8px}
+    .result-card p{color:var(--muted);line-height:1.8}
+    .result-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+    .result-stat{padding:14px;border-radius:17px;background:#f2f8fa}
+    .result-stat strong{display:block;font-size:1.4rem;color:var(--navy)}
+    .result-stat small{color:var(--muted)}
+    .teacher-report{margin:22px auto;padding:18px;border-radius:22px;text-align:right;background:linear-gradient(135deg,#ecfbf7,#f7fffd);border:1px solid #bfe8d8;box-shadow:0 10px 24px rgba(22,131,93,.1)}
+    .teacher-report h3{margin:0 0 6px;color:#146647;font-size:1.18rem}
+    .teacher-report p{margin:0 0 13px;font-size:.84rem}
+    .teacher-report label{display:grid;gap:6px;color:#31566d;font-size:.82rem;font-weight:800}
+    .teacher-report input{width:100%;min-height:47px;border-radius:13px;border:1.5px solid #b8ddd2;background:#fff;padding:10px 12px;color:var(--ink);outline:none}
+    .teacher-report input:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(64,169,107,.13)}
+    .teacher-report-message{margin:12px 0;padding:11px 12px;border-radius:14px;background:#fff;color:#3a5d6b;font-size:.86rem;line-height:1.8;border:1px dashed #b8ddd2}
+    .teacher-report-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+    .teacher-report.is-locked{background:linear-gradient(135deg,#f5fafb,#eef5f6);border-color:#d6e3e7}
+    .teacher-report.is-locked h3{color:#506d79}
+
+    /* Modals, toast, effects */
+    .modal{position:fixed;inset:0;z-index:100;background:rgba(3,22,35,.65);display:grid;place-items:center;padding:16px;backdrop-filter:blur(8px)}
+    .modal-card{width:min(760px,100%);max-height:88vh;overflow:auto;border-radius:29px;background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(239,250,252,.88));box-shadow:0 30px 90px rgba(0,0,0,.35);padding:clamp(20px,4vw,32px);position:relative}
+    .modal-close{position:absolute;top:14px;left:14px}
+    .teacher-profile{display:grid;grid-template-columns:190px 1fr;gap:22px;align-items:start}
+    .teacher-photo{width:190px;aspect-ratio:1/1.12;object-fit:cover;object-position:center;border-radius:25px;box-shadow:var(--shadow);border:5px solid #fff}
+    .teacher-profile h2{color:var(--navy);font-size:1.75rem;margin:5px 0}
+    .teacher-profile h3{margin:4px 0 15px;color:var(--teal)}
+    .credentials{display:grid;gap:8px;padding:0;list-style:none;margin:0}
+    .credentials li{padding:10px 13px;border-radius:13px;background:rgba(255,255,255,.78);border-right:4px solid var(--gold);line-height:1.65;font-size:.9rem}
+    #toast{position:fixed;z-index:160;bottom:20px;left:50%;transform:translate(-50%,30px);opacity:0;pointer-events:none;background:#082f48;color:#fff;padding:12px 18px;border-radius:14px;box-shadow:var(--shadow);font-weight:800;transition:.3s;max-width:min(90vw,520px);text-align:center}
+    #toast.show{opacity:1;transform:translate(-50%,0)}
+    .confetti{position:fixed;inset:0;pointer-events:none;z-index:150;overflow:hidden}
+    .confetti i{position:absolute;top:-20px;width:10px;height:18px;border-radius:3px;animation:fall 1.9s linear forwards}
+    @keyframes fall{to{transform:translate3d(var(--x),110vh,0) rotate(720deg);opacity:.2}}
+    .footer{display:none}
+    .footer .developer-credit{width:min(390px,100%);margin:0;background:linear-gradient(135deg,var(--navy2),var(--navy));text-align:right}
+
+    @media(min-width:701px){
+      .splash-card{position:absolute;right:clamp(22px,4vw,68px);top:50%;transform:translateY(-45%);margin:0}
+    }
+    @media(max-width:980px){
+      .units-grid{grid-template-columns:1fr 1fr}.dash-cards{grid-template-columns:1fr 1fr}.sections-grid{grid-template-columns:repeat(3,1fr)}.deep-dive{grid-template-columns:1fr 1fr}
+      .lessons-grid{grid-template-columns:1fr}.vocab-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:700px){
+      #splash{display:block;padding:15px;padding-bottom:max(15px,env(safe-area-inset-bottom));background:linear-gradient(180deg,#082f48,#061f31)}
+      #splash:before{background-size:100% auto;background-position:center 68px}
+      #splash:after{background-image:linear-gradient(180deg,rgba(4,25,41,.05) 0%,rgba(4,25,41,.05) 28%,#082f48 49%,#061f31 100%)}
+      .splash-top{left:12px;right:12px}.splash-brand{max-width:55%;font-size:.82rem}
+      .splash-card{width:100%;padding:18px;border-radius:25px;margin-top:37vh;background:linear-gradient(145deg,rgba(255,255,255,.83),rgba(235,248,251,.6))}.form-grid{grid-template-columns:1fr 1fr}
+      .splash-actions{grid-template-columns:1fr}.splash-actions .btn-primary{grid-column:auto}.splash-teacher-chip{grid-template-columns:50px 1fr}.splash-teacher-photo{width:50px;height:50px}.splash-teacher-link{grid-column:1/-1;width:100%}
+      .brand-text small,.header-stats .stat-chip:nth-child(2){display:none}.app-header{gap:7px}.header-actions{gap:4px}.icon-btn{width:38px;height:38px}.stat-chip{padding:7px 8px}.teacher-header-btn{min-height:38px;padding:6px 9px;font-size:.7rem}.teacher-header-btn svg{width:17px;height:17px}
+      #view{padding:12px}.hero{min-height:480px;background-position:36% center}.hero:after{background:linear-gradient(0deg,rgba(4,30,51,.97),rgba(4,30,51,.34) 75%)}
+      .units-grid,.dash-cards,.sections-grid,.objectives,.vocab-grid,.examples,.tasks-grid,.deep-dive,.check-options{grid-template-columns:1fr}
+      .unit-card{min-height:280px}.lesson-card{grid-template-columns:125px 1fr;min-height:165px}.lesson-img{min-height:165px}.lesson-info{padding:14px}.lesson-info h3{font-size:1.05rem}
+      .cover-banner{min-height:430px;background-position:42% center}.cover-banner:after{background:linear-gradient(0deg,rgba(4,28,44,.97),rgba(4,28,44,.25) 78%)}
+      .teacher-profile{grid-template-columns:1fr;text-align:center}.teacher-photo{width:150px;margin:auto}.credentials{text-align:right}
+      .result-stats{grid-template-columns:1fr}.reading-box{padding:16px}.quiz-card{padding:18px}.lesson-journey-head{align-items:flex-start;flex-direction:column}.journey-progress{width:100%}.stage-footer{align-items:stretch;flex-direction:column}.stage-footer .btn{width:100%}.teacher-report-actions .btn{width:100%}.video-placeholder{min-height:220px}
+    }
+    @media(max-width:560px){.brand-text{display:none}.floating-developer .developer-credit{padding:5px 6px;gap:6px;border-radius:12px}.floating-developer .developer-credit-copy small{font-size:.42rem}.floating-developer .developer-credit-copy strong{font-size:.55rem}.floating-developer .developer-social{width:27px;height:27px}.floating-developer .developer-social svg{width:14px;height:14px}}
+    @media(max-width:420px){.form-grid{grid-template-columns:1fr}.splash-card h1{font-size:1.55rem}.lesson-card{grid-template-columns:105px 1fr}.header-stats{display:none}.teacher-header-btn{font-size:.67rem;padding-inline:8px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    @media print{
+      body{background:#fff}.app-header,.footer,.floating-developer,.no-print{display:none!important}#view{width:100%;padding:0}
+      #certificate{min-height:92vh!important;box-shadow:none!important;break-inside:avoid;padding-top:80px!important}
+    }
+  </style>
+</head>
+<body>
+  <section id="splash" class="screen">
+    <div class="splash-top">
+      <div class="splash-brand">مدارس الأندلس الأهلية - المسار المصري</div>
+      <button class="btn btn-ghost" data-action="teacher">تعرّف على معلمك</button>
+    </div>
+    <div class="splash-card glass">
+      <span class="eyebrow">العام الدراسي 2026-2027</span>
+      <h1>رحلتي مع اللغة العربية</h1>
+      <h2>الصف الثاني الابتدائي - الفصل الدراسي الأول</h2>
+      <div class="form-grid">
+        <div class="field"><label for="studentName">اسم الطالب</label><input id="studentName" autocomplete="name" placeholder="اكتب اسمك هنا"></div>
+        <div class="field"><label for="studentClass">الفصل</label><input id="studentClass" placeholder="مثال: 2A"></div>
+      </div>
+      <div class="splash-actions">
+        <button id="startBtn" class="btn btn-primary">ابدأ رحلتي</button>
+        <button id="resumeQuestionBtn" class="btn btn-gold" disabled>أكمل آخر سؤال</button>
+        <button id="resumeLessonBtn" class="btn btn-ghost" disabled>أكمل آخر درس</button>
+      </div>
+      <div class="splash-teacher-chip">
+        <img class="splash-teacher-photo" src="assets/images/teacher.webp" alt="الأستاذ أحمد حسن عز الدين">
+        <div class="splash-teacher-copy"><small>معلم المادة</small><strong>الأستاذ أحمد حسن عز الدين</strong></div>
+        <button class="splash-teacher-link" data-action="teacher">تعرّف عليه</button>
+      </div>
+      <div class="developer-credit" aria-label="توقيع مطور التطبيق">
+        <div class="developer-credit-copy"><small>تطوير وبرمجة التطبيق</small><strong>مستر محمد فريد</strong></div>
+        <div class="developer-socials">
+          <a class="developer-social facebook" href="https://www.facebook.com/mr.mahmmd" target="_blank" rel="noopener" aria-label="صفحة مستر محمد فريد على فيسبوك" title="فيسبوك">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-9h3l.45-3.5H13.5V7.26c0-1.01.28-1.7 1.74-1.7H17.1V2.43c-.32-.04-1.43-.13-2.72-.13-2.69 0-4.53 1.64-4.53 4.66V9.5H6.8V13h3.05v9h3.65Z"/></svg>
+          </a>
+          <a class="developer-social whatsapp" href="https://wa.me/966552019074" target="_blank" rel="noopener" aria-label="مراسلة مستر محمد فريد على واتساب" title="واتساب">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.8 9.8 0 0 0-8.52 14.66L2 22l5.49-1.44A9.98 9.98 0 0 0 12.04 22 9.93 9.93 0 0 0 22 12.06 9.91 9.91 0 0 0 12.04 2Zm0 18.32a8.25 8.25 0 0 1-4.2-1.15l-.3-.18-3.26.85.87-3.17-.2-.33a8.16 8.16 0 0 1-1.26-4.28 8.34 8.34 0 1 1 8.35 8.26Zm4.57-6.22c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.57.12-.17.25-.65.81-.8.98-.14.17-.29.19-.54.06-.25-.12-1.06-.39-2.01-1.24a7.55 7.55 0 0 1-1.39-1.73c-.15-.25-.02-.38.11-.51.11-.11.25-.29.38-.44.12-.14.16-.25.25-.42.08-.16.04-.31-.02-.44-.07-.12-.57-1.37-.78-1.87-.2-.49-.41-.42-.57-.43h-.48c-.16 0-.43.07-.66.31-.23.25-.87.85-.87 2.08 0 1.23.89 2.41 1.02 2.58.12.17 1.76 2.69 4.26 3.77.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.48-.61 1.69-1.19.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="shell" class="hidden">
+    <header class="app-header">
+      <button class="icon-btn" data-action="home" aria-label="الرئيسية"></button>
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div class="brand-text"><strong>رحلتي مع اللغة العربية</strong><small id="studentLabel"></small></div>
+      </div>
+      <div class="header-stats">
+        <div class="stat-chip" id="xpChip"></div>
+        <div class="stat-chip" id="starsChip"></div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" data-action="sound" aria-label="الصوت"></button>
+        <button class="teacher-header-btn" data-action="teacher" aria-label="تعرّف على معلمك"></button>
+        <button class="icon-btn" data-action="profile" aria-label="تغيير الطالب"></button>
+      </div>
+    </header>
+    <main id="view"></main>
+    <footer class="footer">
+      <div class="developer-credit" aria-label="توقيع مطور التطبيق">
+        <div class="developer-credit-copy"><small>تطوير وبرمجة التطبيق</small><strong>مستر محمد فريد</strong></div>
+        <div class="developer-socials">
+          <a class="developer-social facebook" href="https://www.facebook.com/mr.mahmmd" target="_blank" rel="noopener" aria-label="صفحة مستر محمد فريد على فيسبوك" title="فيسبوك"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-9h3l.45-3.5H13.5V7.26c0-1.01.28-1.7 1.74-1.7H17.1V2.43c-.32-.04-1.43-.13-2.72-.13-2.69 0-4.53 1.64-4.53 4.66V9.5H6.8V13h3.05v9h3.65Z"/></svg></a>
+          <a class="developer-social whatsapp" href="https://wa.me/966552019074" target="_blank" rel="noopener" aria-label="مراسلة مستر محمد فريد على واتساب" title="واتساب"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.8 9.8 0 0 0-8.52 14.66L2 22l5.49-1.44A9.98 9.98 0 0 0 12.04 22 9.93 9.93 0 0 0 22 12.06 9.91 9.91 0 0 0 12.04 2Zm0 18.32a8.25 8.25 0 0 1-4.2-1.15l-.3-.18-3.26.85.87-3.17-.2-.33a8.16 8.16 0 0 1-1.26-4.28 8.34 8.34 0 1 1 8.35 8.26Zm4.57-6.22c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.57.12-.17.25-.65.81-.8.98-.14.17-.29.19-.54.06-.25-.12-1.06-.39-2.01-1.24a7.55 7.55 0 0 1-1.39-1.73c-.15-.25-.02-.38.11-.51.11-.11.25-.29.38-.44.12-.14.16-.25.25-.42.08-.16.04-.31-.02-.44-.07-.12-.57-1.37-.78-1.87-.2-.49-.41-.42-.57-.43h-.48c-.16 0-.43.07-.66.31-.23.25-.87.85-.87 2.08 0 1.23.89 2.41 1.02 2.58.12.17 1.76 2.69 4.26 3.77.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.48-.61 1.69-1.19.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29Z"/></svg></a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <aside class="floating-developer is-visible" aria-label="توقيع مطور التطبيق">
+    <div class="developer-credit">
+      <div class="developer-credit-copy"><small>تطوير وبرمجة التطبيق</small><strong>مستر محمد فريد</strong></div>
+      <div class="developer-socials">
+        <a class="developer-social facebook" href="https://www.facebook.com/mr.mahmmd" target="_blank" rel="noopener" aria-label="صفحة مستر محمد فريد على فيسبوك" title="فيسبوك"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-9h3l.45-3.5H13.5V7.26c0-1.01.28-1.7 1.74-1.7H17.1V2.43c-.32-.04-1.43-.13-2.72-.13-2.69 0-4.53 1.64-4.53 4.66V9.5H6.8V13h3.05v9h3.65Z"/></svg></a>
+        <a class="developer-social whatsapp" href="https://wa.me/966552019074" target="_blank" rel="noopener" aria-label="مراسلة مستر محمد فريد على واتساب" title="واتساب"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.8 9.8 0 0 0-8.52 14.66L2 22l5.49-1.44A9.98 9.98 0 0 0 12.04 22 9.93 9.93 0 0 0 22 12.06 9.91 9.91 0 0 0 12.04 2Zm0 18.32a8.25 8.25 0 0 1-4.2-1.15l-.3-.18-3.26.85.87-3.17-.2-.33a8.16 8.16 0 0 1-1.26-4.28 8.34 8.34 0 1 1 8.35 8.26Zm4.57-6.22c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.57.12-.17.25-.65.81-.8.98-.14.17-.29.19-.54.06-.25-.12-1.06-.39-2.01-1.24a7.55 7.55 0 0 1-1.39-1.73c-.15-.25-.02-.38.11-.51.11-.11.25-.29.38-.44.12-.14.16-.25.25-.42.08-.16.04-.31-.02-.44-.07-.12-.57-1.37-.78-1.87-.2-.49-.41-.42-.57-.43h-.48c-.16 0-.43.07-.66.31-.23.25-.87.85-.87 2.08 0 1.23.89 2.41 1.02 2.58.12.17 1.76 2.69 4.26 3.77.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.48-.61 1.69-1.19.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29Z"/></svg></a>
+      </div>
+    </div>
+  </aside>
+
+  <div id="teacherModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="teacherTitle">
+    <div class="modal-card glass">
+      <button class="icon-btn modal-close" data-action="close-teacher" aria-label="إغلاق"></button>
+      <div class="teacher-profile">
+        <img class="teacher-photo" src="assets/images/teacher.webp" alt="الأستاذ أحمد حسن عز الدين">
+        <div>
+          <span class="eyebrow">تعرّف على معلمك</span>
+          <h2 id="teacherTitle">أحمد حسن أحمد عزالدين</h2>
+          <h3>معلم اللغة العربية والتربية الإسلامية</h3>
+          <ul class="credentials">
+            <li>ليسانس آداب وتربية - لغة عربية - جامعة الفيوم.</li>
+            <li>دراسات عليا في اضطرابات التواصل والتربية الخاصة - جامعة عين شمس.</li>
+            <li>خبرة 18 عامًا في مجال التعليم.</li>
+            <li>إجازة في التجويد النظري والعملي ومتن تحفة الأطفال - معهد ابن الجزري.</li>
+            <li>دبلوم مهني في الإرشاد النفسي.</li>
+            <li>دبلوم مهني في الاستراتيجيات الحديثة - المركز الدولي.</li>
+            <li>دبلوم مهني في الصحة النفسية - المركز الدولي.</li>
+            <li>دبلوم مهني في تعديل السلوك - المركز الدولي.</li>
+            <li>رخصة معلم خبير - منصة كلاسيرا.</li>
+            <li>رخصة مهنية - وزارة التعليم السعودية.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="toast"></div>
+  <div id="confetti" class="confetti"></div>
+
+  <script>
+    'use strict';
+    /* DATA_START */
+    const IMG='assets/images/';
+    const TEACHER_WHATSAPP='966541274900';
+    const Q=(q,opts,a,exp)=>({q,opts,a,exp});
+    const units=[
+      {
+        id:'u1',number:1,title:'المعاملة الطيبة',image:IMG+'unit-1.webp',accent:'#ff6b5e',
+        description:'نتعلم كيف نستخدم الكلمات الجميلة، ونرحب بالآخرين، ونتصرف بأدب واحترام.',
+        lessons:[
+          {
+            id:'u1l1',title:'يوم جميل',type:'الاستماع',image:IMG+'u1-l1.webp',
+            intro:'نستمع إلى يوم مريم، ونكتشف كيف تجعل المعاملة الطيبة يومنا أجمل.',
+            objectives:['يستمع إلى النص بانتباه ويحدد تفاصيله.','يرتب أحداث يوم مريم ترتيبًا صحيحًا.','يستنتج قيم الاعتذار والتسامح والكلمة الطيبة.','يعيد سرد الأحداث بلغة بسيطة وسليمة.'],
+            text:`أَنَا مَرْيَمُ. اِسْتَيْقَظْتُ مُبَكِّرًا، وَابْتَسَمْتُ لِأُمِّي وَأَبِي، وَقُلْتُ: «صَبَاحُ الْخَيْرِ». تَنَاوَلْتُ فَطُورِي، ثُمَّ ذَهَبْتُ إِلَى الْمَدْرَسَةِ.\nرَأَيْتُ صَدِيقَتِي لَيْلَى حَزِينَةً؛ لِأَنَّهَا نَسِيَتْ قَلَمَهَا، فَأَعْطَيْتُهَا قَلَمًا. وَفِي الْفُسْحَةِ صَدَمْتُ فَاطِمَةَ دُونَ قَصْدٍ، فَاعْتَذَرْتُ لَهَا، فَسَامَحَتْنِي.\nكَانَ يَوْمًا جَمِيلًا؛ لِأَنَّنَا تَعَامَلْنَا مَعًا بِلُطْفٍ وَاحْتِرَامٍ.`,
+            summary:['بدأت مريم يومها مبكرًا وبكلمة طيبة.','ساعدت ليلى عندما نسيت قلمها.','اعتذرت لفاطمة عن الخطأ غير المقصود.','المعاملة الطيبة تجعلنا سعداء.'],
+            vocab:[['مبكرًا','في أول الوقت','استيقظت مريم مبكرًا.'],['لاحظت','رأت وانتبهت','لاحظت مريم حزن ليلى.'],['حزينة','غير سعيدة','كانت ليلى حزينة.'],['دون قصد','من غير تعمد','صدمت مريم فاطمة دون قصد.'],['اعتذرت','طلبت السماح','اعتذرت مريم لصديقتها.'],['تسامح','عفو وقبول الاعتذار','التسامح خلق جميل.']],
+            grammar:{title:'ترتيب الأحداث',points:['نستخدم كلمات: أولًا، ثم، بعد ذلك، أخيرًا.','نرتب الأحداث كما وردت في النص.'],examples:['أولًا استيقظت مريم.','ثم ذهبت إلى المدرسة.','أخيرًا عادت سعيدة.']},
+            spelling:{title:'الاستماع للكلمات المتشابهة',points:['أنطق الكلمة بوضوح قبل كتابتها.','أميز أصوات الحروف داخل الكلمة.'],examples:['مريم - مدرسة','قلم - كلمة','قصد - اعتذار']},
+            activities:{speak:'احكِ لزملائك موقفًا اعتذرت فيه عن خطأ.',write:'اكتب عنوانًا جديدًا مناسبًا للقصة.'},
+            manual:[
+              Q('متى استيقظت مريم؟',['مبكرًا','مساءً','بعد الظهر','متأخرة'], 'مبكرًا','ورد ذلك في بداية النص.'),
+              Q('ماذا قالت مريم لوالديها؟',['صباح الخير','إلى اللقاء','مساء الخير','عيد سعيد'],'صباح الخير','بدأت مريم يومها بتحية طيبة.'),
+              Q('لماذا كانت ليلى حزينة؟',['نسيت قلمها','فقدت حقيبتها','تأخرت عن المدرسة','لم تتناول الفطور'],'نسيت قلمها','ساعدتها مريم وأعطتها قلمًا.'),
+              Q('ماذا فعلت مريم عندما صدمت فاطمة؟',['اعتذرت لها','ابتعدت عنها','ضحكت','غضبت'],'اعتذرت لها','الاعتذار هو التصرف الصحيح.'),
+              Q('كانت صدمة مريم لفاطمة...',['دون قصد','متعمدة','في البيت','أثناء النوم'],'دون قصد','النص يوضح أنها لم تقصد ذلك.'),
+              Q('أي قيمة ظهرت عندما سامحت فاطمة مريم؟',['التسامح','الكسل','الإهمال','الغرور'],'التسامح','قبول الاعتذار صورة من التسامح.'),
+              Q('ما الحدث الذي وقع أولًا؟',['استيقظت مريم','ذهبت إلى الفسحة','اعتذرت لفاطمة','ساعدت ليلى'],'استيقظت مريم','هذا أول أحداث اليوم.'),
+              Q('لماذا كان يوم مريم جميلًا؟',['للمعاملة الطيبة','لأنها لم تذهب للمدرسة','لأنها نامت طوال اليوم','لأنها كانت وحدها'],'للمعاملة الطيبة','اللطف والاعتذار والتسامح جعلت اليوم جميلًا.')
+            ]
+          },
+          {
+            id:'u1l2',title:'كلماتي الجميلة',type:'القراءة',image:IMG+'u1-l2.webp',
+            intro:'نتعلم أن الكلمات الطيبة تسعد القلوب وتزين الكلام.',
+            objectives:['يقرأ النص قراءة سليمة معبرة.','يستخدم كلمات الشكر والاعتذار في مواقف صحيحة.','يميز المفرد من المثنى.','يحلل كلمات بسيطة إلى مقاطع صوتية.'],
+            text:`حَضَرَتْ لَيْلَى إِلَى الْمَدْرَسَةِ وَهِيَ تَحْمِلُ حَقِيبَتَهَا. قَالَتْ سَلْمَى: «حَقِيبَتُكِ جَمِيلَةٌ يَا لَيْلَى»، فَابْتَسَمَتْ لَيْلَى وَشَكَرَتْهَا.\nوَفِي أَثْنَاءِ الْحِصَّةِ سَقَطَ قَلَمُ يُوسُفَ، فَأَحْضَرَتْهُ لَيْلَى لَهُ، فَقَالَ: «شُكْرًا لَكِ».\nقَالَتِ الْمُعَلِّمَةُ: مَا أَجْمَلَ كَلِمَاتِكُمْ! الْكَلِمَاتُ الْجَمِيلَةُ مِثْلُ: شُكْرًا، آسِفٌ، مِنْ فَضْلِكَ؛ تُسْعِدُ الْقُلُوبَ، وَتُزَيِّنُ الْكَلَامَ.`,
+            summary:['مدحت سلمى حقيبة ليلى بكلمة جميلة.','ساعدت ليلى يوسف عندما سقط قلمه.','الكلمات الطيبة تشمل الشكر والاعتذار والطلب بأدب.','الكلمة الجميلة تسعد القلب.'],
+            vocab:[['حقيبة','وعاء يحمل فيه التلميذ أدواته','حقيبتي مرتبة.'],['جميلة','حسنة الشكل، وضدها قبيحة','الحديقة جميلة.'],['تسعد','تفرح، وضدها تحزن','الكلمة الطيبة تسعد القلب.'],['تزين','تجمل','الأزهار تزين الفصل.'],['التلاميذ','جمع التلميذ','جلس التلاميذ بهدوء.'],['تفضل','كلمة تقال عند تقديم شيء','تفضل هذا القلم.'],['آسف','كلمة اعتذار','أنا آسف على الخطأ.']],
+            grammar:{title:'المفرد والمثنى',points:['المفرد يدل على واحد أو واحدة.','المثنى يدل على اثنين أو اثنتين.','نضيف (ان) أو (ين) إلى الاسم المفرد.','التاء المربوطة تصبح تاء مفتوحة عند التثنية.'],examples:['قلم ← قلمان / قلمين','كتاب ← كتابان / كتابين','موزة ← موزتان','وجه ← وجهان']},
+            spelling:{title:'المقاطع الصوتية',points:['نقسم الكلمة وفق الأصوات التي نسمعها.','الحرف المشدد يُنطق حرفين: ساكنًا ثم متحركًا.'],examples:['القرية: الـ / قَرْ / يَـ / ـة','تفاحة: تُفْـ / فَا / حَـ / ـة','الكرة: الْـ / كُـ / رَ / ة']},
+            activities:{speak:'اختر موقفًا وقل الكلمة المناسبة: شكرًا، تفضل، آسف.',write:'صف صورة لطفل يساعد زميله في جملتين.'},
+            manual:[
+              Q('ماذا قالت سلمى عن حقيبة ليلى؟',['حقيبتك جميلة','حقيبتك ثقيلة','أين حقيبتك؟','حقيبتك قديمة'],'حقيبتك جميلة','استخدمت سلمى كلمة طيبة.'),
+              Q('ماذا فعلت ليلى بقلم يوسف؟',['أحضرته له','أخفته','كسرته','تركته'],'أحضرته له','ساعدت زميلها.'),
+              Q('أي كلمة نقولها عند تقديم شيء؟',['تفضل','آسف','وداعًا','لا'],'تفضل','نقول تفضل بأدب.'),
+              Q('مثنى كلمة «قلم» هو...',['قلمان','أقلام','قلمون','قلمة'],'قلمان','المثنى يدل على اثنين.'),
+              Q('مثنى كلمة «موزة» هو...',['موزتان','موزان','موزات','موزتينات'],'موزتان','تتحول التاء المربوطة إلى تاء مفتوحة.'),
+              Q('أي كلمة تسعد القلب؟',['شكرًا','لن أسامحك','ابتعد','أنا غاضب'],'شكرًا','الشكر من الكلمات الطيبة.'),
+              Q('المثنى يدل على...',['اثنين أو اثنتين','واحد فقط','ثلاثة','جماعة كبيرة'],'اثنين أو اثنتين','هذه دلالة المثنى.'),
+              Q('ضد كلمة «جميلة» هو...',['قبيحة','طويلة','قريبة','خفيفة'],'قبيحة','القبيحة عكس الجميلة.')
+            ]
+          },
+          {
+            id:'u1l3',title:'أحب أصدقائي',type:'القراءة',image:IMG+'u1-l3.webp',
+            intro:'نتعلم كيف نرحب بصديق جديد ونساعده ليشعر بالسعادة والانتماء.',
+            objectives:['يقرأ القصة ويفهم أحداثها.','يرتب أحداث القصة ترتيبًا صحيحًا.','يستخدم أسماء الإشارة للقريب.','يصف صديقًا بعبارات مهذبة.'],
+            text:`دَخَلَ أَحْمَدُ الْفَصْلَ، فَوَجَدَ زَمِيلًا جَدِيدًا يَجْلِسُ وَحْدَهُ. قَالَتِ الْمُعَلِّمَةُ: «هَذَا شَرِيفٌ زَمِيلُكُمُ الْجَدِيدُ، رَحِّبُوا بِهِ».\nاِقْتَرَبَ أَحْمَدُ مِنْ شَرِيفٍ، وَعَرَفَ أَنَّهُ بَارِعٌ فِي الرَّسْمِ، فَرَسَمَا مَعًا شَجَرَةً جَمِيلَةً. وَفِي الْفُسْحَةِ جَمَعَ أَحْمَدُ أَصْدِقَاءَهُ، وَتَحَدَّثُوا مَعَ شَرِيفٍ عَنْ مَدْرَسَتِهِ الْقَدِيمَةِ.\nفِي نِهَايَةِ الْيَوْمِ قَالَ أَحْمَدُ: «أَنَا سَعِيدٌ بِوُجُودِكَ»، فَابْتَسَمَ شَرِيفٌ.`,
+            summary:['كان شريف زميلًا جديدًا يجلس وحده.','رحب به أحمد وتعرف إلى هوايته.','شارك الأصدقاء شريف اللعب والحديث.','الترحيب يجعل الصديق الجديد سعيدًا.'],
+            vocab:[['زميل','من يدرس أو يعمل معنا','شريف زميلي الجديد.'],['ركن','جانب، وجمعه أركان','جلس في ركن الفصل.'],['بارع','ماهر','شريف بارع في الرسم.'],['كثيرة','ضدها قليلة','للشجرة أوراق كثيرة.'],['أصدقاء','مفردها صديق','ألعب مع أصدقائي.'],['عدنا','رجعنا','عدنا إلى الفصل.'],['رحبوا','استقبلوا بسرور','رحبوا بالزميل الجديد.']],
+            grammar:{title:'أسماء الإشارة',points:['هذا للمفرد المذكر القريب.','هذه للمفرد المؤنث القريب.','هذان للمثنى المذكر.','هاتان للمثنى المؤنث.','هؤلاء للجمع.'],examples:['هذا صديق.','هذه صديقة.','هذان ولدان.','هاتان بنتان.','هؤلاء تلاميذ.']},
+            spelling:{title:'مراجعة المقاطع الصوتية',points:['أسمع الكلمة أولًا.','أقسمها إلى مقاطع قصيرة واضحة.'],examples:['أصدقاء: أَصْ / دِ / قَا / ء','المدرسة: الْـ / مَدْ / رَ / سَـ / ـة','شريف: شَـ / رِيـ / ف']},
+            activities:{speak:'عرّف زملاءك بصديق جديد واذكر صفة جميلة فيه.',write:'صف صورة لأصدقاء يرسمون ويلعبون معًا.'},
+            manual:[
+              Q('ما اسم الزميل الجديد؟',['شريف','أحمد','يوسف','نبيل'],'شريف','قدمت المعلمة شريفًا للتلاميذ.'),
+              Q('أين كان شريف يجلس؟',['في ركن الفصل','في الحديقة','في البيت','في الملعب'],'في ركن الفصل','كان يجلس وحده في ركن الفصل.'),
+              Q('في أي شيء كان شريف بارعًا؟',['الرسم','السباحة','الطبخ','القيادة'],'الرسم','رسم مع أحمد شجرة.'),
+              Q('اسم الإشارة المناسب لكلمة «صديق» هو...',['هذا','هذه','هؤلاء','هاتان'],'هذا','صديق مفرد مذكر.'),
+              Q('اسم الإشارة المناسب لكلمة «بنتان» هو...',['هاتان','هذان','هذه','هؤلاء'],'هاتان','بنتان مثنى مؤنث.'),
+              Q('ما التصرف الصحيح مع الزميل الجديد؟',['نرحب به','نتركه وحده','نسخر منه','نخفي أدواته'],'نرحب به','الترحيب يساعده على الاندماج.'),
+              Q('مفرد «أصدقاء» هو...',['صديق','صدق','صداقة','صديقان'],'صديق','أصدقاء جمع صديق.'),
+              Q('ضد «كثيرة» هو...',['قليلة','كبيرة','جميلة','طويلة'],'قليلة','قليلة عكس كثيرة.')
+            ]
+          },
+          {
+            id:'u1l4',title:'الطفل المهذب',type:'نشيد',image:IMG+'u1-l4.webp',
+            intro:'نشيد يصف الطفل المؤدب الصادق الذي يساعد الكبار وينصح الصغار.',
+            objectives:['يقرأ أبيات النشيد قراءة معبرة.','يحدد الفكرة الرئيسة وصفات الطفل المهذب.','يتعرف الكلمات التي تنتهي بالصوت نفسه.','يطبق السلوك المهذب في حياته.'],
+            text:`أَنَا الطِّفْلُ الْمُؤَدَّبْ\nمَعَ النَّاسِ مُهَذَّبْ\nأَقُولُ الصِّدْقَ دَوْمًا\nوَمَا كَذَبْتُ يَوْمًا\nأُسَاعِدُ الْكِبَارَ\nوَأَنْصَحُ الصِّغَارَ\nبِأَخْلَاقِ الْكِرَامِ\nسَنَحْيَا فِي سَلَامِ`,
+            summary:['الطفل المهذب يعامل الناس بأدب.','يقول الصدق ولا يكذب.','يساعد الكبار وينصح الصغار.','الأخلاق الطيبة تنشر السلام.'],
+            vocab:[['مهذب','مؤدب','الطفل المهذب محبوب.'],['دومًا','دائمًا','أقول الصدق دومًا.'],['أخلاق','مفردها خُلُق','الصدق من مكارم الأخلاق.'],['الكبار','مفردها الكبير','أساعد الكبار.'],['الصغار','مفردها الصغير','أرحم الصغار.'],['سنحيا','سنعيش','سنحيا في سلام.'],['الكرام','مفردها كريم','هذه أخلاق الكرام.']],
+            grammar:{title:'الفكرة الرئيسة',points:['الفكرة الرئيسة هي المعنى العام للنص.','النشيد يدعونا إلى الصدق والأدب ومساعدة الآخرين.'],examples:['الطفل المهذب يقول الصدق.','الأخلاق الطيبة تنشر السلام.']},
+            spelling:{title:'الكلمات المتشابهة في النهاية',points:['تمنح الكلمات المتشابهة في الصوت النشيد موسيقى جميلة.'],examples:['المؤدب / مهذب','دومًا / يومًا','الكبار / الصغار','الكرام / سلام']},
+            activities:{speak:'اذكر ثلاث صفات للطفل المهذب.',write:'اكتب جملة عن خلق تحبه.'},
+            manual:[
+              Q('عن مَن يتحدث النشيد؟',['الطفل المؤدب','الطبيب','الرياضي','الفلاح'],'الطفل المؤدب','هذا عنوان النشيد وفكرته.'),
+              Q('ماذا يقول الطفل دومًا؟',['الصدق','الكذب','الكلام القاسي','لا شيء'],'الصدق','يقول: أقول الصدق دومًا.'),
+              Q('مَن يساعد الطفل؟',['الكبار','نفسه فقط','الحيوانات فقط','لا أحد'],'الكبار','ورد في النشيد: أساعد الكبار.'),
+              Q('ماذا يفعل مع الصغار؟',['ينصحهم','يخيفهم','يتركهم','يسخر منهم'],'ينصحهم','النصيحة الطيبة سلوك مهذب.'),
+              Q('الكلمتان المتشابهتان في النهاية هما...',['دومًا ويومًا','صدق وكذب','طفل وكبار','أخلاق ومؤدب'],'دومًا ويومًا','تنتهيان بالصوت نفسه.'),
+              Q('مفرد «أخلاق» هو...',['خُلُق','خَلْق','خالق','أخلاقي'],'خُلُق','أخلاق جمع خُلُق.'),
+              Q('ضد الصدق هو...',['الكذب','الأدب','السلام','النصيحة'],'الكذب','الكذب عكس الصدق.'),
+              Q('نتيجة انتشار الأخلاق بين الناس هي...',['السلام','الخلاف','الخوف','الكسل'],'السلام','قال النشيد: سنحيا في سلام.'),
+              Q('أي سلوك يدل على الأدب؟',['احترام الكبير','رفع الصوت','السخرية','عدم الاعتذار'],'احترام الكبير','الاحترام من حسن الخلق.'),
+              Q('معنى «سنحيا» هو...',['سنعيش','سنكتب','سنرسم','سننام'],'سنعيش','سنحيا تعني سنعيش.')
+            ]
+          }
+        ],
+        story:{id:'u1story',title:'القطة والكلب',image:IMG+'u1-story.webp',text:`وَجَدَ الْكَلْبُ قِطَّةً صَغِيرَةً فِي الْمَاءِ تَحْتَاجُ إِلَى الْمُسَاعَدَةِ، فَأَسْرَعَ وَأَحْضَرَ وِعَاءً خَشَبِيًّا، وَسَاعَدَهَا حَتَّى خَرَجَتْ بِأَمَانٍ. شَكَرَتِ الْقِطَّةُ الْكَلْبَ، وَتَعَلَّمَا أَنَّ التَّعَاوُنَ وَالرَّحْمَةَ يَجْعَلَانِ الْحَيَاةَ أَجْمَلَ.`,moral:'التعاون والرحمة ومساعدة من يحتاج إلينا.'}
+      },
+      {
+        id:'u2',number:2,title:'عادات صحية',image:IMG+'unit-2.webp',accent:'#40a96b',
+        description:'نتعلم النظام، والعناية بالأسنان، والغذاء الصحي، والعادات التي تجعلنا أقوى وأسعد.',
+        lessons:[
+          {
+            id:'u2l1',title:'أرتب حياتي',type:'الاستماع',image:IMG+'u2-l1.webp',
+            intro:'نتعلم من لين أن النظام يوفر الوقت ويجعل المكان جميلًا.',
+            objectives:['يستمع إلى النص ويفهم أحداثه.','يرتب أعمال لين ترتيبًا صحيحًا.','يستنتج أهمية النظام.','يذكر عادات يومية منظمة.'],
+            text:`اِسْتَيْقَظَتْ لِينُ مُبَكِّرًا، وَنَظَرَتْ إِلَى سَاعَتِهَا، وَقَالَتْ: حَانَ وَقْتُ تَرْتِيبِ غُرْفَتِي. جَمَعَتْ أَلْعَابَهَا وَوَضَعَتْهَا فِي مَكَانِهَا، ثُمَّ رَتَّبَتْ كُتُبَهَا عَلَى الرُّفُوفِ.\nشَعَرَتْ بِالسَّعَادَةِ، وَقَالَتْ: غُرْفَتِي الْآنَ جَمِيلَةٌ، وَالنِّظَامُ يَجْعَلُ الْمَكَانَ أَفْضَلَ. وَفِي الْمَدْرَسَةِ رَتَّبَتْ أَغْرَاضَهَا بِسُرْعَةٍ، فَشَكَرَهَا الْمُعَلِّمُ.`,
+            summary:['رتبت لين ألعابها وكتبها.','أصبح المكان جميلًا بعد الترتيب.','ساعدها النظام على إنجاز العمل بسرعة.','شعرت لين بالسعادة.'],
+            vocab:[['حان','جاء وقته','حان وقت الدراسة.'],['ترتيب','تنظيم','أحب ترتيب غرفتي.'],['الرفوف','أماكن توضع عليها الكتب','وضعت الكتب على الرفوف.'],['أغراض','أشياء وأدوات','رتبت أغراضي.'],['بسهولة','دون صعوبة','وجدت كتابي بسهولة.'],['النظام','وضع الأشياء في أماكنها','النظام يوفر الوقت.']],
+            grammar:{title:'تسلسل الأعمال',points:['أحدد العمل الأول ثم الذي يليه.','أستخدم: أولًا، ثم، بعد ذلك، أخيرًا.'],examples:['أولًا جمعت الألعاب.','ثم رتبت الكتب.','أخيرًا نظرت إلى غرفتها الجميلة.']},
+            spelling:{title:'أصوات الكلمات',points:['أنطق الكلمة ببطء.','أحدد الحروف والمقاطع التي أسمعها.'],examples:['تَرْ / تِيـ / ب','رُ / فُو / ف','أَغْـ / رَا / ض']},
+            activities:{speak:'صف كيف ترتب حقيبتك قبل المدرسة.',write:'اكتب ثلاث خطوات لترتيب غرفتك.'},
+            manual:[
+              Q('متى استيقظت لين؟',['مبكرًا','بعد الظهر','متأخرة','ليلًا'],'مبكرًا','بدأت يومها مبكرًا.'),
+              Q('ماذا جمعت لين أولًا؟',['ألعابها','الطعام','الملابس الجديدة','الزهور'],'ألعابها','جمعت الألعاب ووضعتها في مكانها.'),
+              Q('أين وضعت الكتب؟',['على الرفوف','تحت السرير','في الحديقة','خلف الباب'],'على الرفوف','الرفوف مكان مناسب للكتب.'),
+              Q('كيف أصبح شكل الغرفة؟',['جميلًا','مظلمًا','أكثر فوضى','صغيرًا'],'جميلًا','النظام جعل الغرفة أجمل.'),
+              Q('ما فائدة النظام؟',['يساعدنا على الإنجاز بسرعة','يضيع الوقت','يزيد الفوضى','يمنع الدراسة'],'يساعدنا على الإنجاز بسرعة','قال المعلم إن النظام يساعدنا.'),
+              Q('كيف شعرت لين بعد الترتيب؟',['بالسعادة','بالغضب','بالخوف','بالملل'],'بالسعادة','الإنجاز والنظام أسعداها.'),
+              Q('الحدث الذي جاء بعد جمع الألعاب هو...',['ترتيب الكتب','النوم','الخروج للملعب','تناول العشاء'],'ترتيب الكتب','هذا ترتيب الأحداث في النص.'),
+              Q('أي سلوك منظم؟',['إعادة الأدوات إلى مكانها','ترك الكتب على الأرض','إخفاء الحقيبة','تأجيل الواجب دائمًا'],'إعادة الأدوات إلى مكانها','لكل شيء مكان مناسب.')
+            ]
+          },
+          {
+            id:'u2l2',title:'أسناني قوية',type:'القراءة',image:IMG+'u2-l2.webp',
+            intro:'نتعلم كيف تحمينا فرشاة الأسنان من التسوس، ولماذا لا نترك تنظيف الأسنان يومًا.',
+            objectives:['يقرأ القصة ويحدد شخصياتها.','يشرح أهمية تنظيف الأسنان.','يستخدم ذلك وتلك للبعيد.','يميز اللام الشمسية من القمرية.'],
+            text:`جَلَسَ أَشْرَفُ عَلَى سَرِيرِهِ، وَتَذَكَّرَ أَنَّهُ لَمْ يَغْسِلْ أَسْنَانَهُ، لَكِنَّهُ تَكَاسَلَ وَنَامَ. رَأَى فِي حُلْمِهِ سُوسَةَ أَسْنَانٍ كَبِيرَةً تُهَاجِمُهُ، ثُمَّ ظَهَرَتْ فُرْشَاةٌ ضَخْمَةٌ، وَقَالَتْ: «لَا تَخَفْ، سَأَحْمِيكَ».\nاِسْتَيْقَظَ أَشْرَفُ، وَأَسْرَعَ إِلَى الْحَمَّامِ، وَغَسَلَ أَسْنَانَهُ جَيِّدًا. قَالَتْ أُمُّهُ: فُرْشَاتُكَ تَحْمِيكَ مِثْلَ الْحَارِسِ الشَّخْصِيِّ، فَلَا تَتْرُكْهَا يَوْمًا.`,
+            summary:['تكاسل أشرف عن تنظيف أسنانه.','رأى سوسة الأسنان في الحلم.','أنقذته الفرشاة في الحلم.','قرر أن ينظف أسنانه كل يوم.'],
+            vocab:[['تذكر','ضدها نسي','تذكر أشرف الفرشاة.'],['ضخمة','كبيرة، وضدها صغيرة','رأى فرشاة ضخمة.'],['أسنان','مفردها سن','أنظف أسناني.'],['الحلم','جمعه الأحلام','رأى حلمًا غريبًا.'],['المرآة','جمعها المرايا','نظر في المرآة.'],['قصّ','حكى','قص أشرف حلمه.'],['التسوس','تلف يصيب الأسنان','التنظيف يمنع التسوس.']],
+            grammar:{title:'ذلك وتلك',points:['ذلك للمفرد المذكر البعيد.','تلك للمفرد المؤنث البعيد.','هذا وهذه للقريب.'],examples:['ذلك طبيب.','تلك فرشاة.','هذا ولد قريب.','هذه مرآة قريبة.']},
+            spelling:{title:'اللام الشمسية والقمرية',points:['في اللام الشمسية لا ننطق اللام ويشدد الحرف بعدها.','في اللام القمرية ننطق اللام بوضوح.'],examples:['الشَّمس - السِّن - الطِّفل','القَمر - الفُرشاة - المِرآة']},
+            activities:{speak:'قدم نصيحتين للحفاظ على الأسنان.',write:'اكتب بطاقة تعريفية لفرشاة الأسنان: اسمها وفائدتها.'},
+            manual:[
+              Q('لماذا تكاسل أشرف؟',['لم يرد تنظيف أسنانه','لم يجد سريره','أراد الذهاب للمدرسة','كان يلعب بالكرة'],'لم يرد تنظيف أسنانه','ترك الفرشاة ونام.'),
+              Q('ماذا رأى أشرف في الحلم؟',['سوسة أسنان','عصفورًا','كرة كبيرة','طبيبًا فقط'],'سوسة أسنان','هاجمته السوسة في الحلم.'),
+              Q('من أنقذ أشرف في الحلم؟',['فرشاة الأسنان','المرآة','الوسادة','الكتاب'],'فرشاة الأسنان','ظهرت الفرشاة الضخمة وحمته.'),
+              Q('بم شبّهت الأم الفرشاة؟',['بالحارس الشخصي','بالطائرة','بالقلم','بالنافذة'],'بالحارس الشخصي','لأنها تحمي الأسنان.'),
+              Q('اسم الإشارة المناسب لـ«فرشاة بعيدة» هو...',['تلك','ذلك','هذه','هذا'],'تلك','فرشاة مفرد مؤنث بعيد.'),
+              Q('اسم الإشارة المناسب لـ«طبيب بعيد» هو...',['ذلك','تلك','هذه','هؤلاء'],'ذلك','طبيب مفرد مذكر بعيد.'),
+              Q('أي كلمة بها لام شمسية؟',['الشَّمس','القمر','الفرشاة','المرآة'],'الشَّمس','لا ننطق اللام في الشمس.'),
+              Q('مفرد «أسنان» هو...',['سن','سنان','أسن','سنة'],'سن','أسنان جمع سن.'),
+              Q('ضد «تذكر» هو...',['نسي','حكى','استيقظ','غسل'],'نسي','نسي عكس تذكر.')
+            ]
+          },
+          {
+            id:'u2l3',title:'طعامي الصحي',type:'القراءة',image:IMG+'u2-l3.webp',
+            intro:'تتعلم آمنة أن الطعام الصحي يجعل الجسم قويًا والعقل نشيطًا.',
+            objectives:['يفهم سبب تعب آمنة وكيف تحسنت.','يميز الطعام الصحي.','يتعرف ظرفي الزمان والمكان.','يكتب بطاقة تعريفية بسيطة.'],
+            text:`عَادَتْ آمِنَةُ مِنَ الْمَدْرَسَةِ، وَهِيَ تَشْعُرُ بِالتَّعَبِ وَتَمْشِي بِصُعُوبَةٍ. قَالَتْ لَهَا أُمُّهَا: أَنْتِ لَا تَأْكُلِينَ الْأَطْعِمَةَ الضَّرُورِيَّةَ لِلْجِسْمِ.\nأَعَدَّتِ الْأُمُّ طَبَقًا صِحِّيًّا فِيهِ خَضْرَاوَاتٌ وَأَرُزٌّ وَدَجَاجٌ وَفَوَاكِهُ. قَالَتْ آمِنَةُ: طَعَامٌ صِحِّيٌّ وَلَذِيذٌ! وَمُنْذُ ذَلِكَ الْيَوْمِ غَيَّرَتْ عَادَاتِهَا، فَأَصْبَحَتْ تَمْشِي بِنَشَاطٍ، وَتَحْمِلُ حَقِيبَتَهَا دُونَ تَعَبٍ.`,
+            summary:['شعرت آمنة بالتعب بسبب العادات الغذائية غير الصحية.','قدمت الأم طبقًا متوازنًا.','استمعت آمنة إلى النصيحة.','تحسنت صحتها وأصبحت نشيطة.'],
+            vocab:[['طريق','جمعه طرق','سلكت طريق المدرسة.'],['بصعوبة','ضدها بسهولة','حملت الحقيبة بصعوبة.'],['أطعمة','مفردها طعام','أختار أطعمة صحية.'],['ضرورية','لازمة ومهمة','الماء ضروري للجسم.'],['أعدت','حضرت','أعدت الأم الطعام.'],['نصيحة','جمعها نصائح','استمعت إلى النصيحة.'],['نشاط','ضده كسل','ألعب بنشاط.']],
+            grammar:{title:'ظرف الزمان وظرف المكان',points:['ظرف الزمان يوضح وقت حدوث الفعل.','ظرف المكان يوضح مكان حدوث الفعل.'],examples:['صباحًا - مساءً - اليوم - غدًا','فوق - تحت - أمام - خلف - بين','أكلت صباحًا.','جلست أمام أمي.']},
+            spelling:{title:'مراجعة اللام الشمسية والقمرية',points:['أضع (الـ) قبل الكلمة ثم أنطقها.','أحدد هل سمعت صوت اللام أم لا.'],examples:['الطَّعام: شمسية','الصِّحة: شمسية','الفاكهة: قمرية','الماء: قمرية']},
+            activities:{speak:'اذكر مكونات وجبة صحية تحبها.',write:'اكتب بطاقة تعريفية عن نفسك وطعامك الصحي المفضل.'},
+            manual:[
+              Q('كيف عادت آمنة من المدرسة؟',['متعبة','فرحة جدًا','نائمة','تجري بسرعة'],'متعبة','كانت تمشي بصعوبة.'),
+              Q('ما سبب تعب آمنة؟',['قلة الطعام الصحي','كثرة الرياضة','ترتيب غرفتها','قراءة القصص'],'قلة الطعام الصحي','لم تكن تتناول الأطعمة الضرورية.'),
+              Q('مَن قدم النصيحة لآمنة؟',['أمها','صديقتها','معلمها','أخوها'],'أمها','لاحظت الأم عاداتها الغذائية.'),
+              Q('أي طعام كان في الطبق الصحي؟',['خضراوات وفواكه','حلوى فقط','مشروبات غازية','رقائق فقط'],'خضراوات وفواكه','الطبق المتوازن احتوى أطعمة متنوعة.'),
+              Q('كيف أصبحت آمنة بعد تغيير عاداتها؟',['نشيطة','أكثر تعبًا','حزينة','كسولة'],'نشيطة','تحسنت صحتها.'),
+              Q('أي كلمة ظرف زمان؟',['صباحًا','فوق','أمام','خلف'],'صباحًا','توضح وقت حدوث الفعل.'),
+              Q('أي كلمة ظرف مكان؟',['تحت','غدًا','مساءً','اليوم'],'تحت','توضح مكان الشيء.'),
+              Q('مفرد «أطعمة» هو...',['طعام','مطعم','طعوم','طاعم'],'طعام','أطعمة جمع طعام.'),
+              Q('ضد «نشاط» هو...',['كسل','قوة','صحة','سهولة'],'كسل','الكسل عكس النشاط.')
+            ]
+          },
+          {
+            id:'u2l4',title:'البطل الصغير',type:'نشيد',image:IMG+'u2-l4.webp',
+            intro:'البطل الحقيقي هو الطفل الذي يحافظ على عاداته الصحية كل يوم.',
+            objectives:['يقرأ النشيد قراءة معبرة.','يحدد العادات الصحية المذكورة.','يتعرف الكلمات المتشابهة في النهاية.','يضع خطة يومية صحية.'],
+            text:`الْبَطَلُ الصَّغِيرُ\nيَقُومُ فِي الْبُكُورِ\nيُنَظِّفُ الْأَسْنَانَ\nيُرَتِّبُ الْمَكَانَ\nطَعَامُهُ صِحِّيٌّ\nوَجِسْمُهُ قَوِيٌّ\nعَادَاتُهُ مُفِيدَةْ\nحَيَاتُهُ سَعِيدَةْ`,
+            summary:['يستيقظ البطل الصغير مبكرًا.','ينظف أسنانه ويرتب مكانه.','يأكل طعامًا صحيًا.','العادات الصحية تجعل حياته سعيدة.'],
+            vocab:[['البطل','جمعه الأبطال','البطل يحافظ على صحته.'],['البكور','أول النهار','أستيقظ في البكور.'],['السرور','السعادة والفرح','شعرت بالسرور.'],['مفيدة','ضدها مضرة','الرياضة عادة مفيدة.'],['صحي','مفيد للصحة','أختار طعامًا صحيًا.'],['يرتب','ينظم','يرتب سريره.'],['سعيدة','مسرورة','حياته سعيدة.']],
+            grammar:{title:'فكرة النشيد',points:['العادات الصحية اليومية تصنع طفلًا قويًا.','البطل يبدأ يومه مبكرًا وينظم حياته.'],examples:['النوم مبكرًا عادة صحية.','غسل الأسنان يحميها.','الطعام الصحي يقوي الجسم.']},
+            spelling:{title:'نهايات متشابهة',points:['أحدد الكلمات التي تنتهي بصوت واحد.'],examples:['البكور / السرور','الأسنان / المكان','مفيدة / سعيدة','صحي / قوي']},
+            activities:{speak:'اذكر ثلاث عادات تقوم بها بعد الاستيقاظ.',write:'اكتب جدولًا صغيرًا لعاداتك الصحية.'},
+            manual:[
+              Q('متى يقوم البطل الصغير؟',['في البكور','في منتصف الليل','متأخرًا','بعد الغروب'],'في البكور','البكور أول النهار.'),
+              Q('ماذا ينظف البطل؟',['أسنانه','الشارع فقط','السيارة','الحائط'],'أسنانه','غسل الأسنان عادة صحية.'),
+              Q('كيف طعامه؟',['صحي','ضار','حلوى فقط','مكشوف'],'صحي','الطعام الصحي يقوي الجسم.'),
+              Q('نتيجة العادات المفيدة هي حياة...',['سعيدة','حزينة','فوضوية','متعبة دائمًا'],'سعيدة','ورد ذلك في نهاية النشيد.'),
+              Q('الكلمتان المتشابهتان في النهاية هما...',['مفيدة وسعيدة','طعام ومكان','بطل وصحي','أسنان ومفيدة'],'مفيدة وسعيدة','تنتهيان بالصوت نفسه.'),
+              Q('معنى «البكور» هو...',['أول النهار','آخر الليل','وقت اللعب فقط','منتصف اليوم'],'أول النهار','البكور يعني الصباح المبكر.'),
+              Q('ضد «مفيدة» هو...',['مضرة','جميلة','قوية','مرتبة'],'مضرة','المضرة عكس المفيدة.'),
+              Q('أي عادة صحية؟',['ترتيب المكان','ترك الأسنان بلا تنظيف','السهر الطويل','أكل الحلوى فقط'],'ترتيب المكان','النظام عادة مفيدة.'),
+              Q('جمع «البطل» هو...',['الأبطال','البطلات فقط','بطول','بطلان دائمًا'],'الأبطال','الأبطال جمع البطل.'),
+              Q('الجسم يصبح قويًا بسبب...',['العادات الصحية','الكسل','السهر','ترك الطعام'],'العادات الصحية','مجموعة العادات الصحية تقوي الجسم.')
+            ]
+          }
+        ],
+        story:{id:'u2story',title:'غزال في ورطة',image:IMG+'u2-story.webp',text:`عَلِقَ غَزَالٌ صَغِيرٌ بَيْنَ أَغْصَانٍ مُلْتَفَّةٍ، فَلَمْ يَسْتَطِعِ الْحَرَكَةَ. شَاهَدَتْهُ حَيَوَانَاتُ الْغَابَةِ، فَتَعَاوَنَ الْأَرْنَبُ وَالسِّنْجَابُ وَالطَّائِرُ، حَتَّى أَبْعَدُوا الْأَغْصَانَ وَأَنْقَذُوهُ. شَكَرَهُمُ الْغَزَالُ، وَعَرَفَ الْجَمِيعُ أَنَّ التَّعَاوُنَ يَجْعَلُ الصَّعْبَ سَهْلًا.`,moral:'التعاون والشجاعة ومساعدة الصديق وقت الشدة.'}
+      },
+      {
+        id:'u3',number:3,title:'الرياضة والتكنولوجيا',image:IMG+'unit-3.webp',accent:'#437cda',
+        description:'نتعلم أن الرياضة للجميع، وأن التكنولوجيا مفيدة عندما نستخدمها بتوازن وأمان.',
+        lessons:[
+          {
+            id:'u3l1',title:'الرياضة لنا جميعًا',type:'الاستماع',image:IMG+'u3-l1.webp',
+            intro:'نشاهد التقنية، لكننا نتحرك بأنفسنا؛ فالرياضة تقوينا وتسعدنا.',
+            objectives:['يستمع إلى الحوار ويفهم فكرته.','يميز المشاهدة من الممارسة.','يذكر فوائد الرياضة.','يشرح استخدام التقنية بصورة مفيدة.'],
+            text:`كَانَتْ نُورُ تُمَارِسُ بَعْضَ التَّمْرِينَاتِ، بَيْنَمَا كَانَتْ أُخْتُهَا رِيمُ تُشَاهِدُ فِيدْيُوهَاتٍ رِيَاضِيَّةً. قَالَتْ رِيمُ: أُحِبُّ مُشَاهَدَةَ الرِّيَاضِيِّينَ، لَكِنَّنِي لَا أَسْتَطِيعُ مِثْلَهُمْ.\nقَالَتْ نُورُ: يُمْكِنُنَا أَنْ نَبْدَأَ بِشَيْءٍ بَسِيطٍ؛ فَالْجَرْيُ وَاللَّعِبُ مُمْتِعَانِ. وَافَقَتْ رِيمُ، وَقَالَتْ: سَأَتَعَلَّمُ مِنَ الْفِيدْيُو، لَكِنَّ الْأَهَمَّ أَنْ أَتَحَرَّكَ بِنَفْسِي.`,
+            summary:['كانت نور تمارس الرياضة.','كانت ريم تكتفي بالمشاهدة.','شجعت نور أختها على البدء بحركات بسيطة.','التكنولوجيا تساعدنا، لكن الممارسة هي الأهم.'],
+            vocab:[['تمرينات','حركات رياضية','أمارس تمرينات بسيطة.'],['مشاهدة','النظر والمتابعة','أحب مشاهدة المباراة.'],['ممارسة','القيام بالفعل','ممارسة الرياضة مفيدة.'],['بسيط','سهل وغير معقد','بدأت بتمرين بسيط.'],['نشاط','حيوية وحركة','الرياضة تزيد النشاط.'],['التكنولوجيا','أدوات وتقنيات حديثة','أستخدم التكنولوجيا للتعلم.']],
+            grammar:{title:'الفكرة والمقارنة',points:['مشاهدة الرياضة لا تغني عن ممارستها.','نستخدم التقنية لنتعلم الحركة ثم نطبقها بأمان.'],examples:['ريم تشاهد.','نور تمارس.','الممارسة تقوي الجسم.']},
+            spelling:{title:'الحروف المتقاربة في الصوت',points:['أسمع بداية الكلمة ونهايتها.','أربط الصوت بالحرف الصحيح.'],examples:['رياضة / زيادة','حركة / حلقة','جري / يجري']},
+            activities:{speak:'اذكر رياضة بسيطة تستطيع البدء بها اليوم.',write:'اكتب جملة عن فائدة التكنولوجيا وجملة عن فائدة الرياضة.'},
+            manual:[
+              Q('ماذا كانت نور تفعل؟',['تمارس التمرينات','تنام','تطبخ','تشاهد فقط'],'تمارس التمرينات','كانت تتحرك وتمارس الرياضة.'),
+              Q('ماذا كانت ريم تشاهد؟',['فيديوهات رياضية','رسومًا فقط','الطعام','الكتب المدرسية'],'فيديوهات رياضية','كانت منشغلة بالمشاهدة.'),
+              Q('بم نصحت نور ريم؟',['أن تبدأ بحركة بسيطة','أن تتوقف عن الحركة','أن تنام','أن تشاهد طوال اليوم'],'أن تبدأ بحركة بسيطة','البداية الصغيرة أفضل من عدم الحركة.'),
+              Q('ما الأهم بعد مشاهدة الحركة؟',['تطبيقها بأمان','إغلاق كل الأجهزة دائمًا','شراء جهاز جديد','الجلوس'],'تطبيقها بأمان','التقنية وسيلة للتعلم ثم نتحرك.'),
+              Q('ماذا تزيد الرياضة؟',['النشاط','الكسل','الخوف','التعب الدائم'],'النشاط','الرياضة تنشط الجسم.'),
+              Q('أي جملة صحيحة؟',['الرياضة للجميع','الرياضة للكبار فقط','المشاهدة تكفي دائمًا','الحركة غير مفيدة'],'الرياضة للجميع','يمكن لكل شخص أن يبدأ بما يناسبه.'),
+              Q('معنى «بسيط» هو...',['سهل','صعب جدًا','بعيد','قديم'],'سهل','البسيط غير المعقد.'),
+              Q('التكنولوجيا تصبح مفيدة عندما...',['نستخدمها للتعلم بتوازن','نظل أمامها طوال اليوم','تمنعنا من النوم','نترك الحركة'],'نستخدمها للتعلم بتوازن','التوازن هو الفكرة الأساسية.')
+            ]
+          },
+          {
+            id:'u3l2',title:'حسام والكمبيوتر',type:'القراءة',image:IMG+'u3-l2.webp',
+            intro:'يتعلم حسام توزيع وقته بين الكمبيوتر والمذاكرة والصلاة والرياضة.',
+            objectives:['يحدد مشكلة حسام وحلها.','يستنتج أضرار الجلوس الطويل أمام الشاشة.','يميز أسلوب الأمر من النهي.','يميز حروفًا متشابهة في النطق.'],
+            text:`جَلَسَ حُسَامٌ فَتَرَاتٍ طَوِيلَةً أَمَامَ الْكُمْبِيُوتَرِ، حَتَّى آلَمَتْهُ عَيْنُهُ. قَالَتْ أُمُّهُ: الْجُلُوسُ الطَّوِيلُ أَمَامَ الشَّاشَةِ يُؤْذِي الْعَيْنَ، وَيُقَلِّلُ النَّوْمَ وَالْحَرَكَةَ.\nاِقْتَرَحَتْ عَلَيْهِ أَنْ يُحَدِّدَ وَقْتًا قَصِيرًا لِلْأَلْعَابِ الْإِلِكْتُرُونِيَّةِ، وَوَقْتًا لِلَّعِبِ مَعَ أَصْحَابِهِ، وَالرِّيَاضَةِ، وَالْمُذَاكَرَةِ، وَالصَّلَاةِ. وَمُنْذُ ذَلِكَ الْيَوْمِ أَصْبَحَ حُسَامٌ يُوَزِّعُ وَقْتَهُ، وَيُحَافِظُ عَلَى صِحَّتِهِ.`,
+            summary:['أفرط حسام في استخدام الكمبيوتر.','شعر بألم في عينه.','شرحت الأم أضرار الجلوس الطويل.','تعلم حسام تنظيم وقته.'],
+            vocab:[['متألمًا','متوجعًا','جلس حسام متألمًا.'],['يؤذي','يضر، وضده ينفع','السهر يؤذي الجسم.'],['يوزع','يقسم','يوزع وقته.'],['أنشطة','مفردها النشاط','أمارس أنشطة متنوعة.'],['وقت','جمعه أوقات','للعب وقت.'],['الشاشة','سطح عرض الجهاز','لا أقترب من الشاشة.'],['التوازن','إعطاء كل عمل وقتًا مناسبًا','التوازن يحمي صحتنا.']],
+            grammar:{title:'أسلوب الأمر والنهي',points:['الأمر طلب القيام بفعل.','النهي طلب التوقف عن فعل، ويبدأ غالبًا بـ (لا).'],examples:['رتب وقتك.','مارس الرياضة.','لا تجلس طويلًا.','لا تقترب من الشاشة.']},
+            spelling:{title:'حروف متشابهة في النطق',points:['أميز بين ت / ط، س / ص، د / ض، ذ / ز.','أستخدم معنى الكلمة لأختار الحرف الصحيح.'],examples:['وقت / وطن','صحة / ساحة','ضرر / درس','زمن / ذهب']},
+            activities:{speak:'ناقش مع زميلك الوقت المناسب للشاشة.',write:'اكتب أمرًا ونهيًا عن استخدام الكمبيوتر.'},
+            manual:[
+              Q('لماذا تألمت عين حسام؟',['للجلوس الطويل أمام الكمبيوتر','للعب الكرة','للقراءة دقائق','للنوم مبكرًا'],'للجلوس الطويل أمام الكمبيوتر','الاستخدام الطويل أتعب عينه.'),
+              Q('ما أثر الشاشة الطويل على النوم؟',['تقلله','تزيده دائمًا','لا تؤثر أبدًا','تجعله أسهل دائمًا'],'تقلله','ذكرت الأم ذلك.'),
+              Q('ما الحل الذي اقترحته الأم؟',['توزيع الوقت','ترك المذاكرة','اللعب طوال اليوم','عدم الحركة'],'توزيع الوقت','يخصص وقتًا لكل نشاط.'),
+              Q('أي جملة أسلوب أمر؟',['رتب وقتك','لا تسهر','هل رتبت وقتك؟','الوقت مهم'],'رتب وقتك','تطلب القيام بالفعل.'),
+              Q('أي جملة أسلوب نهي؟',['لا تجلس طويلًا','مارس الرياضة','الكمبيوتر مفيد','متى تلعب؟'],'لا تجلس طويلًا','بدأت بلا الناهية.'),
+              Q('ضد «يؤذي» هو...',['ينفع','يضر','يتعب','يقلل'],'ينفع','النافع عكس المؤذي.'),
+              Q('مفرد «أنشطة» هو...',['نشاط','نشط','تنشيط','نشاطان'],'نشاط','أنشطة جمع نشاط.'),
+              Q('تنظيم الوقت يساعد حسام على...',['حماية صحته','ترك الصلاة','إهمال الدراسة','زيادة السهر'],'حماية صحته','التوازن يحمي الجسم والعين.'),
+              Q('أي استخدام أفضل للتقنية؟',['وقت محدد مع فواصل حركة','ساعات طويلة بلا توقف','قبل النوم طوال الوقت','بدون مذاكرة'],'وقت محدد مع فواصل حركة','هذا استخدام متوازن.')
+            ]
+          },
+          {
+            id:'u3l3',title:'في النادي',type:'القراءة',image:IMG+'u3-l3.webp',
+            intro:'نتعرف أسرار التفوق الرياضي: التعاون، والتركيز، والتدريب، وتنفيذ نصائح المدرب.',
+            objectives:['يقرأ النص ويميز شخصياته ورياضاتهم.','يستنتج أسباب التفوق.','يستخدم الذي والتي.','يكتب بطاقة تعريفية عن نفسه.'],
+            text:`ذَهَبَ نَبِيلٌ وَأُخْتُهُ سَمَا إِلَى النَّادِي، وَجَلَسَا مَعَ الصَّدِيقَيْنِ مُهَنَّدٍ وَفَرِيدَةَ. تَحَدَّثَ كُلُّ وَاحِدٍ عَنْ سَبَبِ تَفَوُّقِهِ.\nفَازَ نَبِيلٌ فِي كُرَةِ الْقَدَمِ بِفَضْلِ التَّعَاوُنِ، وَتَفَوَّقَتْ سَمَا فِي كُرَةِ الْيَدِ بِسَبَبِ السُّرْعَةِ وَالتَّرْكِيزِ، وَتَفَوَّقَتْ فَرِيدَةُ فِي الْكَرَاتِيهِ بِالتَّدْرِيبِ الْيَوْمِيِّ، وَفَازَ مُهَنَّدٌ فِي سِبَاقِ الْكَرَاسِيِّ الْمُتَحَرِّكَةِ؛ لِأَنَّهُ يُنَفِّذُ نَصَائِحَ الْمُدَرِّبِ.`,
+            summary:['لكل طفل رياضة مفضلة.','التعاون سبب فوز نبيل.','التركيز والتدريب يصنعان التفوق.','الاستماع للمدرب مهم.'],
+            vocab:[['العطلة','الإجازة','ذهبت إلى النادي في العطلة.'],['المفضلة','المحببة','السباحة رياضتي المفضلة.'],['سبب','جمعه أسباب','للتفوق أسباب.'],['المتنوعة','المختلفة','أمارس ألعابًا متنوعة.'],['الاهتمام','ضده الإهمال','الاهتمام بالصحة مهم.'],['القدم','جمعها الأقدام','أركل الكرة بالقدم.'],['التركيز','توجيه الانتباه','التركيز يساعدني.']],
+            grammar:{title:'الذي والتي',points:['الذي اسم موصول للمفرد المذكر.','التي اسم موصول للمفرد المؤنث.'],examples:['الولد الذي فاز مجتهد.','البنت التي تتدرب متفوقة.','هذا اللاعب الذي أحب لعبه.','هذه الرياضة التي أمارسها.']},
+            spelling:{title:'مراجعة إملائية',points:['أراجع اللام الشمسية والقمرية.','أنتبه للتاء المربوطة والهاء.','أنطق الكلمة قبل كتابتها.'],examples:['النادي - العطلة - المدرب','رياضة - نصيحة - صحته']},
+            activities:{speak:'تحدث عن رياضتك المفضلة وسبب حبك لها.',write:'اكتب بطاقة تعريفية: الاسم، العمر، الرياضة المفضلة.'},
+            manual:[
+              Q('أين التقى الأصدقاء؟',['في النادي','في المطبخ','في المكتبة','في الحافلة'],'في النادي','ذهبوا لممارسة الرياضة.'),
+              Q('في أي رياضة تفوق نبيل؟',['كرة القدم','كرة اليد','الكاراتيه','السباحة'],'كرة القدم','فاز مع فريقه بفضل التعاون.'),
+              Q('ما سبب تفوق سما؟',['السرعة والتركيز','الكسل','السهر','الإهمال'],'السرعة والتركيز','تفوقت في كرة اليد.'),
+              Q('كيف تفوقت فريدة؟',['بالتدريب اليومي','بترك التدريب','بمشاهدة الآخرين فقط','بالنوم'],'بالتدريب اليومي','الاستمرار يصنع المهارة.'),
+              Q('لماذا تفوق مهند؟',['ينفذ نصائح المدرب','لا يستمع لأحد','يتوقف عن التدريب','يلعب وحده دائمًا'],'ينفذ نصائح المدرب','فاز في سباق الكراسي المتحركة.'),
+              Q('أكمل: الولد ... فاز متعاون.',['الذي','التي','هذه','تلك'],'الذي','الولد مفرد مذكر.'),
+              Q('أكمل: البنت ... تتدرب نشيطة.',['التي','الذي','هذا','هؤلاء'],'التي','البنت مفرد مؤنث.'),
+              Q('ضد «الاهتمام» هو...',['الإهمال','التدريب','التركيز','التعاون'],'الإهمال','الإهمال عكس الاهتمام.'),
+              Q('من أسباب التفوق الرياضي...',['التعاون والتدريب','الكسل','عدم النوم','ترك المدرب'],'التعاون والتدريب','هذه قيم النص.')
+            ]
+          },
+          {
+            id:'u3l4',title:'رياضتي',type:'نشيد',image:IMG+'u3-l4.webp',
+            intro:'نشيد يوضح أن الرياضة تقوي الجسم والعقل، وتعلم النظام، وتجمل الحياة.',
+            objectives:['يقرأ النشيد بإيقاع معبر.','يعدد فوائد الرياضة.','يميز الكلمات المتشابهة في النهاية.','يختار رياضة مناسبة له.'],
+            text:`رِيَاضَتِي الْجَدِيدَةْ\nنَافِعَةٌ مُفِيدَةْ\nجِسْمِي بِهَا قَوِيٌّ\nعَقْلِي بِهَا ذَكِيٌّ\nتُرَتِّبُ الْأَوْقَاتَ\nتُعَلِّمُ النِّظَامَ\nتُجَمِّلُ الْحَيَاةَ\nوَتَصْنَعُ السَّلَامَ`,
+            summary:['الرياضة نافعة ومفيدة.','تقوي الجسم وتنشط العقل.','تعلمنا تنظيم الوقت والنظام.','تجعل الحياة أجمل.'],
+            vocab:[['نافعة','مفيدة، وضدها ضارة','الرياضة نافعة.'],['جسم','جمعه أجسام','جسمي قوي.'],['ذكي','جمعه أذكياء','العقل النشيط ذكي.'],['ترتب','تنظم','الرياضة ترتب الأوقات.'],['تجمل','تزين','الأخلاق تجمل الحياة.'],['السلام','الأمان والمحبة','نعيش في سلام.'],['الأوقات','مفردها الوقت','أنظم أوقاتي.']],
+            grammar:{title:'فوائد الرياضة',points:['تقوي الجسم.','تنشط العقل.','تعلم النظام واحترام الوقت.','تنشر التعاون والسلام.'],examples:['أجري فيصبح جسمي قويًا.','أتدرب بانتظام.','أحترم زملائي في اللعب.']},
+            spelling:{title:'النهايات المتشابهة',points:['أستمع إلى نهاية كل بيت.','أحدد الكلمات ذات الصوت المتشابه.'],examples:['الجديدة / مفيدة','قوي / ذكي','النظام / السلام']},
+            activities:{speak:'اختر رياضة واذكر فائدتين لها.',write:'اكتب اسم رياضتك المفضلة ولماذا تحبها.'},
+            manual:[
+              Q('عم يتحدث النشيد؟',['فوائد الرياضة','الطعام فقط','الكمبيوتر فقط','السفر'],'فوائد الرياضة','الفكرة الرئيسة هي الرياضة.'),
+              Q('ماذا تفعل الرياضة بالجسم؟',['تقويه','تضعفه','توقفه','تجعله كسولًا'],'تقويه','قال النشيد: جسمي بها قوي.'),
+              Q('ماذا تفعل الرياضة بالعقل؟',['تنشطه','تؤذيه','تجعله ينام','تمنع التفكير'],'تنشطه','العقل بها ذكي.'),
+              Q('الكلمتان المتشابهتان في النهاية هما...',['الجديدة ومفيدة','جسم وأوقات','نظام وجديدة','ذكي وحياة'],'الجديدة ومفيدة','تنتهيان بصوت واحد.'),
+              Q('ضد «نافعة» هو...',['ضارة','مفيدة','جميلة','قوية'],'ضارة','الضار عكس النافع.'),
+              Q('مفرد «الأوقات» هو...',['الوقت','التوقيت','المؤقت','وقتان'],'الوقت','الأوقات جمع الوقت.'),
+              Q('الرياضة تعلمنا...',['النظام','الفوضى','الكسل','الإهمال'],'النظام','ورد ذلك في النشيد.'),
+              Q('أي جملة صحيحة؟',['العقل السليم في الجسم السليم','الرياضة تضيع الوقت','الحركة ضارة دائمًا','النظام غير مهم'],'العقل السليم في الجسم السليم','الرياضة تفيد الجسم والعقل.'),
+              Q('معنى «ترتب» هو...',['تنظم','تبعثر','تهمل','تؤخر'],'تنظم','ترتب وتنظم متقاربتان في المعنى.'),
+              Q('ممارسة الرياضة بانتظام...',['تقوي الجسم','تسبب الكسل','تمنع النوم','تؤذي العقل'],'تقوي الجسم','هذه أهم فوائدها.')
+            ]
+          }
+        ],
+        story:{id:'u3story',title:'هيا نلعب',image:IMG+'u3-story.webp',text:`دَعَتِ الْأَرْنَبَةُ أَخَاهَا الْأَرْنَبَ إِلَى اللَّعِبِ، لَكِنَّهُ شَعَرَ بِالْكَسَلِ، وَرَفَضَ الْحَرَكَةَ. حَكَتِ الْجَدَّةُ قِصَّةَ أَسَدٍ ظَلَّ يَأْكُلُ وَلَا يَتَحَرَّكُ، حَتَّى ضَعُفَ جِسْمُهُ، وَلَمْ يَعُدْ يَسْتَطِيعُ الْجَرْيَ. فَهِمَ الْأَرْنَبُ أَنَّ الْحَرَكَةَ تُقَوِّي الْجِسْمَ، فَنَهَضَ وَقَالَ: هَيَّا نَلْعَبْ!`,moral:'الحركة تقوي الجسم، والكسل يضعفه.'}
+      }
+    ];
+    const lessonEnhancements={
+      u1l1:{bookPages:'9-10',videoId:'PqhqdqZfJek',showGrammar:false,showSpelling:false,
+        warmup:['ماذا تقول لأسرتك عندما تستيقظ صباحًا؟','كيف تساعد زميلًا نسي أداة من أدواته؟','ما التصرف الصحيح إذا أخطأت في حق صديقك دون قصد؟'],
+        deepDive:[['أستمع بهدف','أتوقع أحداث يوم مريم، وأركز على ترتيبها وعلى الكلمات التي جعلت يومها جميلًا.'],['أتتبع الأحداث','بدأت مريم يومها بتحية طيبة، وساعدت ليلى، ثم اعتذرت لفاطمة عندما أخطأت دون قصد.'],['أستنتج القيمة','اليوم الجميل لا تصنعه الأشياء وحدها؛ بل تصنعه الكلمة الطيبة والمساعدة والاعتذار والتسامح.']]},
+      u1l2:{bookPages:'11-23',videoId:'KBxfobsRvOI',showGrammar:true,showSpelling:true,
+        warmup:['ما أجمل كلمة تحب أن تسمعها من الآخرين؟','ماذا تقول لمن يقدم لك شيئًا؟','كيف تؤثر الكلمة الطيبة في مشاعر زميلك؟'],
+        deepDive:[['الفكرة الرئيسة','الكلمات الجميلة مثل شكرًا وآسف ومن فضلك تجعل التعامل بين الناس ألطف وأسعد.'],['ألاحظ المواقف','مدحت سلمى حقيبة ليلى، وساعدت ليلى يوسف، واستخدم الجميع كلمات مهذبة تناسب الموقف.'],['أطبق في حياتي','أختار الكلمة المناسبة للموقف: أشكر عند المساعدة، وأعتذر عند الخطأ، وأطلب بأدب.']],
+        stageChecks:{grammar:Q('أي كلمة تدل على المثنى؟',['قلمان','قلم','أقلام','قلمة'],'قلمان','قلمان تدل على اثنين.'),spelling:Q('أي كتابة توضح تقسيم كلمة إلى مقاطع صوتية؟',['تُفْـ / فَا / حَـ / ـة','تفاحة جميلة','هذه تفاحة','تفاحات'],'تُفْـ / فَا / حَـ / ـة','قسّمنا الكلمة وفق الأصوات التي نسمعها.')}},
+      u1l3:{bookPages:'24-36',videoId:'PCOgESKKHXQ',showGrammar:true,showSpelling:true,
+        warmup:['كيف يشعر التلميذ عندما يدخل فصلًا جديدًا؟','ماذا تفعل لترحب بزميل جديد؟','ما الصفة الجميلة التي تحبها في صديقك؟'],
+        deepDive:[['بداية القصة','وجد أحمد شريفًا يجلس وحده، وقدّمته المعلمة بوصفه زميلًا جديدًا يحتاج إلى الترحيب.'],['كيف تكوّنت الصداقة؟','اقترب أحمد من شريف، واكتشف موهبته في الرسم، ثم شاركه الأصدقاء الحديث واللعب.'],['الرسالة','الترحيب والمشاركة يجعلان الزميل الجديد يشعر بالأمان والانتماء إلى جماعته.']],
+        stageChecks:{grammar:Q('اختر اسم الإشارة المناسب: ... صديق جديد.',['هذا','هذه','هاتان','هؤلاء'],'هذا','هذا للمفرد المذكر القريب.'),spelling:Q('ما التقسيم الصوتي الصحيح لكلمة «شريف»؟',['شَـ / رِيـ / ف','شريف / ان','ش / ر / يفان','شري / فة'],'شَـ / رِيـ / ف','نقسم الكلمة وفق الأصوات المسموعة.')}},
+      u1l4:{bookPages:'37-40',videoId:'2eICn_kvb8E',showGrammar:false,showSpelling:false,
+        warmup:['من هو الطفل المهذب في رأيك؟','اذكر سلوكًا يدل على الصدق.','كيف تستطيع مساعدة شخص أكبر أو أصغر منك؟'],
+        deepDive:[['صورة الطفل المهذب','يصف النشيد طفلًا مؤدبًا وصادقًا يحترم الناس ويحب الخير لهم.'],['السلوك العملي','الأدب يظهر في الكلام والفعل: أقول الحق، أساعد الكبير، وأنصح الصغير بلطف.'],['موسيقى النشيد','تتقارب نهايات بعض الكلمات فتمنح الأبيات إيقاعًا محببًا يسهل قراءته وحفظه.']]},
+      u2l1:{bookPages:'45-46',videoId:'b_2gn9I0FOc',showGrammar:false,showSpelling:false,
+        warmup:['ما الأشياء التي ترتبها كل يوم؟','كيف تشعر عندما يكون مكانك منظمًا؟','ما الخطوة الأولى لترتيب غرفتك؟'],
+        deepDive:[['المشكلة','كانت الألعاب والكتب في غير أماكنها، لذلك احتاجت لين إلى خطة واضحة للترتيب.'],['خطوات الحل','جمعت الألعاب أولًا، ورتبت الكتب بعد ذلك، ثم وضعت كل غرض في مكانه المناسب.'],['النتيجة','ساعد النظام لين على إنجاز عملها بسرعة، وأصبح المكان جميلًا وشعرت بالسعادة.']]},
+      u2l2:{bookPages:'47-59',videoId:'ZCdOfq4Ue9s',showGrammar:true,showSpelling:true,
+        warmup:['متى تنظف أسنانك؟','ماذا قد يحدث إذا أهملنا تنظيف الأسنان؟','ما الأدوات التي نستخدمها للمحافظة على الأسنان؟'],
+        deepDive:[['سبب المشكلة','تكاسل أشرف عن تنظيف أسنانه، فصار معرضًا لألم الأسنان والتسوس.'],['الحلم المنبه','رأى في حلمه سوسة الأسنان، وظهرت الفرشاة كأنها بطل يساعده ويحمي أسنانه.'],['القرار الصحيح','فهم أشرف الرسالة وقرر أن ينظف أسنانه بانتظام ويحافظ عليها كل يوم.']],
+        stageChecks:{grammar:Q('اختر اسم الإشارة المناسب لفرشاة بعيدة.',['تلك','ذلك','هذه','هذا'],'تلك','تلك للمفرد المؤنث البعيد.'),spelling:Q('أي كلمة تبدأ بلام قمرية ننطقها بوضوح؟',['الفرشاة','الشَّمس','السِّن','الطِّفل'],'الفرشاة','نسمع صوت اللام في كلمة الفرشاة.')}},
+      u2l3:{bookPages:'60-72',videoId:'cqHCjso4SBU',showGrammar:true,showSpelling:true,
+        warmup:['مم تتكون الوجبة الصحية في رأيك؟','لماذا لا نكثر من الحلوى؟','ما فائدة شرب الماء للجسم؟'],
+        deepDive:[['العادات غير الصحية','شعرت آمنة بالتعب لأن جسمها لم يحصل على غذاء متوازن يساعده على النشاط.'],['الطبق المتوازن','قدمت الأم طعامًا متنوعًا يضم ما يحتاج إليه الجسم من عناصر مفيدة.'],['التغيير','استمعت آمنة إلى النصيحة، وغيرت عاداتها، فتحسنت صحتها وعادت إلى نشاطها.']],
+        stageChecks:{grammar:Q('أي كلمة تدل على ظرف زمان؟',['صباحًا','فوق','أمام','بين'],'صباحًا','صباحًا توضح وقت حدوث الفعل.'),spelling:Q('أي كلمة تبدأ بلام قمرية؟',['الفاكهة','الطَّعام','الصِّحة','الشَّمس'],'الفاكهة','نسمع صوت اللام في كلمة الفاكهة.')}},
+      u2l4:{bookPages:'73-76',videoId:'f6SQ3lFTjxU',showGrammar:false,showSpelling:false,
+        warmup:['ما أول عادة صحية تقوم بها صباحًا؟','لماذا يسمى الطفل المنظم بطلًا صغيرًا؟','كيف تنظم عاداتك خلال اليوم؟'],
+        deepDive:[['بداية قوية','يبدأ البطل الصغير يومه مبكرًا ويهتم بنظافته وترتيب مكانه.'],['عادات متكاملة','تنظيف الأسنان والطعام الصحي والنظام عادات تتعاون لتجعل الجسم أقوى.'],['رسالة النشيد','البطولة الحقيقية أن ألتزم كل يوم بالعادات الصغيرة التي تحمي صحتي وتسعدني.']]},
+      u3l1:{bookPages:'82-83',videoId:'ib0m9C1ImTw',showGrammar:false,showSpelling:false,
+        warmup:['ما الرياضة التي تحب مشاهدتها؟','هل جربت أن تمارس رياضة بعد أن شاهدتها؟','كيف تساعدنا التكنولوجيا على تعلم حركة جديدة؟'],
+        deepDive:[['المشاهدة والممارسة','كانت ريم تشاهد الرياضة فقط، بينما كانت نور تمارسها وتحرك جسمها.'],['بداية مناسبة','شجعت نور أختها على البدء بحركات بسيطة وآمنة تناسب قدرتها.'],['التوازن','يمكن أن نتعلم من التقنية، لكن الجسم يستفيد عندما نطبق الحركة ونمارس الرياضة فعلًا.']]},
+      u3l2:{bookPages:'84-96',videoId:'-eOgSWPogTk',showGrammar:true,showSpelling:true,
+        warmup:['كم وقتًا تقضيه أمام الشاشة كل يوم؟','ماذا تشعر في عينيك بعد الجلوس طويلًا؟','كيف نوازن بين الكمبيوتر والحركة والمذاكرة؟'],
+        deepDive:[['الإفراط','جلس حسام أمام الكمبيوتر وقتًا طويلًا، فشعر بألم في عينه وتأثر نظام يومه.'],['نصيحة الأم','شرحت الأم أن التقنية مفيدة عندما نستخدمها في وقت محدد مع راحة وحركة ونوم كافٍ.'],['الخطة الجديدة','تعلم حسام أن يوزع وقته بين الدراسة واللعب والرياضة والشاشة ليحمي صحته.']],
+        stageChecks:{grammar:Q('أي جملة تمثل أسلوب نهي؟',['لا تجلس طويلًا.','رتب وقتك.','الكمبيوتر مفيد.','هل لعبت؟'],'لا تجلس طويلًا.','بدأت الجملة بلا الناهية وطلبت التوقف عن الفعل.'),spelling:Q('أي زوج يوضح الفرق بين صوتي السين والصاد؟',['ساحة / صحة','وقت / وطن','ضرر / درس','زمن / ذهب'],'ساحة / صحة','الكلمتان تساعدان على التمييز بين س وص.')}},
+      u3l3:{bookPages:'97-109',videoId:'fICsgJ5UbXI',showGrammar:true,showSpelling:true,
+        warmup:['ماذا يفعل الأطفال في النادي؟','ما رياضتك المفضلة ولماذا؟','ما الصفات التي تساعد الرياضي على التفوق؟'],
+        deepDive:[['رياضات متنوعة','يمارس الأطفال رياضات مختلفة، ولكل رياضة مهارات وطريقة تدريب تناسبها.'],['أسباب التفوق','تعاون نبيل، وركزت سما، وتدربت فريدة يوميًا، ونفذ مهند نصائح المدرب.'],['الرسالة','الموهبة بداية، لكن التدريب والتركيز والتعاون والاستماع للنصيحة هي طريق التقدم.']],
+        stageChecks:{grammar:Q('أكمل: البنت ... تتدرب نشيطة.',['التي','الذي','هذا','هؤلاء'],'التي','التي اسم موصول للمفرد المؤنث.'),spelling:Q('أي كلمة تنتهي بتاء مربوطة؟',['رياضة','النادي','المدرب','صحته'],'رياضة','تنتهي كلمة رياضة بتاء مربوطة.')}},
+      u3l4:{bookPages:'110-113',videoId:'fICsgJ5UbXI',showGrammar:false,showSpelling:false,
+        warmup:['ما رياضتك المفضلة؟','كيف تقوي الرياضة الجسم والعقل؟','ماذا تعلمنا الرياضة عن الوقت والنظام؟'],
+        deepDive:[['فائدة للجسم والعقل','يوضح النشيد أن الرياضة تقوي الجسم وتنشط العقل وتمنح الطفل حيوية.'],['النظام والوقت','التدريب المنتظم يعلمنا ترتيب أوقاتنا والالتزام بالقواعد.'],['حياة أجمل','عندما نمارس الرياضة باحترام وتعاون تصبح حياتنا أكثر صحة وسعادة وسلامًا.']]}
+    };
+    const unitMedia={
+      u1:{reviewVideoId:'E_kbH9eciMg',storyVideoId:'ORNXRXTE2Sk'},
+      u2:{reviewVideoId:'Z_4iZoF4yME',storyVideoId:'rUxhQPoykzs'},
+      u3:{reviewVideoId:'RouoVCSLR4U',storyVideoId:'hREmmvDksnY'}
+    };
+    units.forEach(unit=>{
+      Object.assign(unit,unitMedia[unit.id]||{});
+      if(unit.story){unit.story.videoId=unit.storyVideoId||'';unit.story.speechText=unit.story.text}
+      unit.lessons.forEach(lesson=>{Object.assign(lesson,lessonEnhancements[lesson.id]||{});lesson.speechText=lesson.text});
+    });
+    /* DATA_END */
+    /* APP_START */
+    const STORE='arabic_grade2_profiles_v1';
+    const ACTIVE='arabic_grade2_active_v1';
+    let activeKey=null;
+    let state=null;
+    let currentView={page:'splash'};
+    let advanceTimer=null;
+
+    const iconPaths={
+      home:'<path d="M3 11.5 12 4l9 7.5v8a1.5 1.5 0 0 1-1.5 1.5h-5v-6h-5v6h-5A1.5 1.5 0 0 1 3 19.5z"/>',
+      book:'<path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22zM20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22z"/>',
+      star:'<path d="m12 2.5 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9z"/>',
+      trophy:'<path d="M8 4h8v4a4 4 0 0 1-8 0zM8 6H4v2a4 4 0 0 0 4 4M16 6h4v2a4 4 0 0 1-4 4M12 12v5M8 21h8M9 17h6"/>',
+      user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+      volume:'<path d="M4 10v4h4l5 4V6l-5 4zM16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/>',
+      mute:'<path d="M4 10v4h4l5 4V6l-5 4zM17 9l5 6M22 9l-5 6"/>',
+      info:'<circle cx="12" cy="12" r="9"/><path d="M12 10v7M12 7h.01"/>',
+      back:'<path d="m15 18-6-6 6-6"/>',
+      lock:'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
+      play:'<path d="m8 5 11 7-11 7z"/>',
+      target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+      speaker:'<path d="M4 10v4h4l5 4V6l-5 4zM16 9a4 4 0 0 1 0 6"/>',
+      check:'<path d="m4 12 5 5L20 6"/>',
+      pencil:'<path d="m4 20 4.5-1 10-10-3.5-3.5-10 10zM13.5 6.5 17 10"/>',
+      quiz:'<path d="M9 8a3 3 0 1 1 4.2 2.75C12.4 11.1 12 11.7 12 13M12 17h.01"/><circle cx="12" cy="12" r="10"/>',
+      layers:'<path d="m12 2 9 5-9 5-9-5zM3 12l9 5 9-5M3 17l9 5 9-5"/>',
+      close:'<path d="M6 6l12 12M18 6 6 18"/>',
+      reset:'<path d="M4 4v6h6M20 20v-6h-6M5.5 15a8 8 0 0 0 13-6M18.5 9a8 8 0 0 0-13-2"/>',
+      flag:'<path d="M5 22V3M5 4h12l-2 4 2 4H5"/>',
+      clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+      print:'<path d="M7 8V3h10v5M7 17H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-3M7 14h10v7H7z"/>'
+    };
+    function icon(name,filled=false){return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="${filled?'currentColor':'none'}" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${iconPaths[name]||iconPaths.star}</svg>`}
+    function escapeHTML(v=''){return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+    function readProfiles(){try{return JSON.parse(localStorage.getItem(STORE)||'{}')}catch{return {}}}
+    function defaultState(name,cls){return {name,cls,xp:0,stars:0,coins:0,sound:true,completed:[],quizAwards:[],rewardedAnswers:[],unitAssessments:[],quizzes:{},notes:{},lessonFlow:{},lastLesson:null,lastQuestion:null,lastView:null,finalCompleted:false,createdAt:Date.now(),updatedAt:Date.now()}}
+    function normalizeState(raw,name,cls){
+      const base=defaultState(name,cls),s=Object.assign(base,raw||{});
+      ['completed','quizAwards','rewardedAnswers','unitAssessments'].forEach(k=>{if(!Array.isArray(s[k]))s[k]=[]});
+      ['quizzes','notes','lessonFlow'].forEach(k=>{if(!s[k]||typeof s[k]!=='object'||Array.isArray(s[k]))s[k]={}});
+      if(!s.lastView||typeof s.lastView!=='object'||Array.isArray(s.lastView))s.lastView=null;
+      s.name=name;s.cls=cls;return s;
+    }
+    function makeKey(name,cls){return `${name.trim().toLowerCase()}|${cls.trim().toLowerCase()}`}
+    function getCandidate(){
+      const name=document.getElementById('studentName').value.trim();
+      const cls=document.getElementById('studentClass').value.trim();
+      if(!name)return null;
+      const key=makeKey(name,cls),profiles=readProfiles();
+      return {key,state:profiles[key]||null,name,cls};
+    }
+    function save(){
+      if(!state||!activeKey)return;
+      state.updatedAt=Date.now();
+      const profiles=readProfiles();profiles[activeKey]=state;
+      localStorage.setItem(STORE,JSON.stringify(profiles));localStorage.setItem(ACTIVE,activeKey);
+      refreshHeader();updateSplashResume();
+    }
+    function activateProfile(){
+      const candidate=getCandidate();
+      if(!candidate){toast('اكتب اسم الطالب أولًا');document.getElementById('studentName').focus();return false}
+      activeKey=candidate.key;state=normalizeState(candidate.state,candidate.name,candidate.cls);
+      save();return true;
+    }
+    function prefillActive(){
+      const profiles=readProfiles(),key=localStorage.getItem(ACTIVE),s=key&&profiles[key];
+      if(s){document.getElementById('studentName').value=s.name||'';document.getElementById('studentClass').value=s.cls||''}
+      updateSplashResume();
+    }
+    function updateSplashResume(){
+      const c=getCandidate(),s=c?.state;
+      document.getElementById('resumeQuestionBtn').disabled=!s?.lastQuestion;
+      document.getElementById('resumeLessonBtn').disabled=!s?.lastLesson;
+    }
+    function showApp(){
+      document.getElementById('splash').classList.add('hidden');document.getElementById('shell').classList.remove('hidden');
+      refreshHeader();window.scrollTo(0,0);
+    }
+    function showSplash(){
+      if(state){state.lastView=null;save()}document.getElementById('shell').classList.add('hidden');document.getElementById('splash').classList.remove('hidden');
+      document.querySelector('.floating-developer')?.classList.add('is-visible');
+      currentView={page:'splash'};prefillActive();window.scrollTo(0,0);
+    }
+    function refreshHeader(){
+      if(!state)return;
+      document.getElementById('studentLabel').textContent=`${state.name}${state.cls?' - '+state.cls:''}`;
+      document.getElementById('xpChip').innerHTML=icon('target')+`<span>${state.xp} XP</span>`;
+      document.getElementById('starsChip').innerHTML=icon('star',true)+`<span>${state.stars}</span>`;
+      document.querySelector('[data-action="home"]').innerHTML=icon('home');
+      document.querySelector('.brand-mark').innerHTML=icon('book');
+      document.querySelector('[data-action="sound"]').innerHTML=icon(state.sound?'volume':'mute');
+      document.querySelector('[data-action="teacher"][aria-label]').innerHTML=icon('info')+'<span>تعرّف على معلمك</span>';
+      document.querySelector('[data-action="profile"]').innerHTML=icon('user');
+      document.querySelector('[data-action="close-teacher"]').innerHTML=icon('close');
+    }
+    function pulseXP(){const chip=document.getElementById('xpChip');if(!chip)return;chip.classList.remove('reward-pop');void chip.offsetWidth;chip.classList.add('reward-pop')}
+    function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),2600)}
+    function confetti(){
+      const box=document.getElementById('confetti');box.innerHTML='';const colors=['#ffbf3f','#1ab8c7','#ff6b5e','#8357c7','#40a96b'];
+      for(let i=0;i<55;i++){const p=document.createElement('i');p.style.left=Math.random()*100+'vw';p.style.background=colors[i%colors.length];p.style.setProperty('--x',(Math.random()*240-120)+'px');p.style.animationDelay=Math.random()*.35+'s';box.appendChild(p)}
+      setTimeout(()=>box.innerHTML='',2400);
+    }
+    function sound(ok=true){
+      if(!state?.sound)return;
+      try{const C=window.AudioContext||window.webkitAudioContext,c=new C(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.type='sine';o.frequency.setValueAtTime(ok?560:220,c.currentTime);o.frequency.exponentialRampToValueAtTime(ok?820:150,c.currentTime+.18);g.gain.setValueAtTime(.12,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.25);o.start();o.stop(c.currentTime+.26)}catch{}
+    }
+    let speechSession=0;
+    function stopSpeech(){
+      speechSession++;
+      if('speechSynthesis'in window)window.speechSynthesis.cancel();
+    }
+    function arabicVoiceScore(voice){
+      const lang=(voice.lang||'').replace('_','-').toLowerCase(),name=(voice.name||'').toLowerCase();let score=0;
+      if(lang==='ar-sa')score+=120;else if(lang==='ar-eg')score+=110;else if(lang.startsWith('ar-'))score+=90;else if(lang==='ar')score+=80;
+      if(name.includes('microsoft'))score+=30;
+      if(/hamed|hamad|naayf|salma|tarik|zeina|maged|هاني|سلمى|نايف|عربي/.test(name))score+=18;
+      if(voice.localService)score+=8;if(voice.default)score+=3;return score;
+    }
+    function bestArabicVoice(){
+      const choose=()=>window.speechSynthesis.getVoices().filter(v=>(v.lang||'').toLowerCase().startsWith('ar')).sort((a,b)=>arabicVoiceScore(b)-arabicVoiceScore(a))[0]||null;
+      const immediate=choose();if(immediate)return Promise.resolve(immediate);
+      return new Promise(resolve=>{let done=false;const finish=()=>{if(done)return;done=true;clearTimeout(timer);window.speechSynthesis.removeEventListener('voiceschanged',finish);resolve(choose())};const timer=setTimeout(finish,1200);window.speechSynthesis.addEventListener('voiceschanged',finish,{once:true})});
+    }
+    function prepareArabicSpeech(text){
+      return String(text||'').normalize('NFC').replace(/ـ/g,'').replace(/[«»“”"]/g,'').replace(/\s*\n+\s*/g,'. ').replace(/\s+/g,' ').replace(/\.{2,}/g,'.').trim();
+    }
+    function speechChunks(text,maxLength=175){
+      const prepared=prepareArabicSpeech(text),sentences=prepared.split(/(?<=[.!؟؛])\s+/u).filter(Boolean),chunks=[];
+      sentences.forEach(sentence=>{if(sentence.length<=maxLength){chunks.push(sentence);return}const pieces=sentence.split(/(?<=[،؛])\s+/u).filter(Boolean);let current='';pieces.forEach(piece=>{if((current+' '+piece).trim().length<=maxLength){current=(current+' '+piece).trim();return}if(current)chunks.push(current);const words=piece.split(' ');current='';words.forEach(word=>{if((current+' '+word).trim().length>maxLength&&current){chunks.push(current);current=word}else current=(current+' '+word).trim()})});if(current)chunks.push(current)});return chunks;
+    }
+    async function speak(text){
+      if(!state?.sound||!('speechSynthesis'in window)){toast('شغّل الصوت أولًا للاستماع إلى القراءة');return}
+      stopSpeech();const sessionId=speechSession,voice=await bestArabicVoice(),chunks=speechChunks(text);let index=0;
+      if(!chunks.length)return;
+      const next=()=>{if(sessionId!==speechSession||index>=chunks.length)return;const utterance=new SpeechSynthesisUtterance(chunks[index++]);utterance.lang=voice?.lang||'ar-SA';utterance.voice=voice;utterance.rate=.72;utterance.pitch=.96;utterance.volume=1;utterance.onend=next;utterance.onerror=event=>{if(!['canceled','interrupted'].includes(event.error))toast('تعذر إكمال القراءة الصوتية على هذا الجهاز')};window.speechSynthesis.speak(utterance)};
+      next();
+    }
+    function prepareVocalizedSpeech(text){
+      // لا نحذف التشكيل: صوت المتصفح العربي يقرأ هذه النسخة كما ضُبطت في المنهج.
+      return String(text||'').normalize('NFC').replace(/ـ/g,'').replace(/\s*\n+\s*/g,'. ').replace(/\s+/g,' ').trim();
+    }
+    async function speakVocalized(text){
+      if(!state?.sound||!('speechSynthesis'in window)){toast('شغّل الصوت أولًا للاستماع إلى القراءة');return}
+      stopSpeech();
+      const sessionId=speechSession,voice=await bestArabicVoice(),chunks=speechChunks(prepareVocalizedSpeech(text));let index=0;
+      if(!chunks.length)return;
+      if(!voice){toast('ثبّت صوتًا عربيًا على الجهاز أولًا؛ لن يستخدم التطبيق صوتًا غير عربي لقراءة النص المُشكَّل.');return}
+      const next=()=>{
+        if(sessionId!==speechSession||index>=chunks.length)return;
+        const utterance=new SpeechSynthesisUtterance(chunks[index++]);
+        utterance.lang=voice.lang||'ar-SA';utterance.voice=voice;utterance.rate=.68;utterance.pitch=1;utterance.volume=1;
+        utterance.onend=next;
+        utterance.onerror=event=>{if(!['canceled','interrupted'].includes(event.error))toast('تعذر إكمال القراءة الصوتية على هذا الجهاز')};
+        window.speechSynthesis.speak(utterance);
+      };
+      next();
+    }
+    function allLessons(){return units.flatMap(u=>u.lessons)}
+    function findLesson(id){for(const u of units){const l=u.lessons.find(x=>x.id===id);if(l)return {unit:u,lesson:l,index:u.lessons.indexOf(l)}}return null}
+    function lessonSteps(lesson){
+      const steps=[
+        ['warmup','التهيئة للدرس','أفكر وأكتب توقعاتي','target'],
+        ['video','فيديو الدرس','أشاهد ثم أؤكد المشاهدة','play'],
+        ['explanation','شرح الدرس','النص والفهم والأفكار','book'],
+        ['vocab','المفردات','معانٍ وبطاقات تفاعلية','layers']
+      ];
+      if(lesson.showGrammar)steps.push(['grammar','الأساليب والتراكيب','شرح وتطبيق نحوي','book']);
+      if(lesson.showSpelling)steps.push(['spelling','الإملاء والأصوات','قاعدة وتدريب صوتي','pencil']);
+      steps.push(['activities','أتحدث وأكتب','أطبق ما تعلمت','flag'],['quiz','اختبر نفسك','التحدي الختامي للدرس','quiz']);
+      return steps;
+    }
+    function getLessonFlow(lesson){
+      state.lessonFlow||(state.lessonFlow={});
+      const flow=state.lessonFlow[lesson.id]||(state.lessonFlow[lesson.id]={completed:[],warmup:{},checks:{},videoConfirmed:false,current:'warmup'});
+      if(!Array.isArray(flow.completed))flow.completed=[];if(!flow.warmup||typeof flow.warmup!=='object')flow.warmup={};if(!flow.checks||typeof flow.checks!=='object')flow.checks={};
+      if(state.completed.includes(lesson.id))flow.completed=lessonSteps(lesson).map(s=>s[0]);
+      return flow;
+    }
+    function stepDone(lesson,key){return getLessonFlow(lesson).completed.includes(key)||(key==='quiz'&&state.completed.includes(lesson.id))}
+    function isStepUnlocked(lesson,key){
+      const steps=lessonSteps(lesson),i=steps.findIndex(s=>s[0]===key);if(i<0)return false;if(i===0||state.completed.includes(lesson.id))return true;
+      return stepDone(lesson,steps[i-1][0]);
+    }
+    function lessonStageProgress(lesson){const steps=lessonSteps(lesson);return Math.round(steps.filter(s=>stepDone(lesson,s[0])).length/steps.length*100)}
+    function stageCheck(lesson,key){
+      if(key==='explanation')return lesson.manual[0];
+      if(key==='vocab'){
+        const first=lesson.vocab[0],others=lesson.vocab.slice(1,4).map(v=>v[1]);
+        return Q(`ما معنى كلمة «${first[0]}»؟`,seededShuffle([first[1],...others],lesson.id+'-stage-vocab'),first[1],first[2]);
+      }
+      if(lesson.stageChecks?.[key])return lesson.stageChecks[key];
+      const source=key==='grammar'?lesson.grammar:lesson.spelling,correct=source.examples[0];
+      return Q(`اختر مثالًا صحيحًا على «${source.title}».`,[correct,lesson.summary[0],lesson.intro,lesson.activities.write],correct,'ارجع إلى الأمثلة ثم حاول مرة أخرى.');
+    }
+    function warmupReady(lesson){const flow=getLessonFlow(lesson);return lesson.warmup.every((_,i)=>(flow.warmup[i]||'').trim().length>0)}
+    function stageReady(lesson,key){
+      const flow=getLessonFlow(lesson);if(stepDone(lesson,key))return true;
+      if(key==='warmup')return warmupReady(lesson);
+      if(key==='video')return !lesson.videoId||flow.videoConfirmed===true;
+      if(['explanation','vocab','grammar','spelling'].includes(key))return flow.checks[key]===true;
+      if(key==='activities')return (state.notes[lesson.id]||'').trim().length>0;
+      return false;
+    }
+    function completeStage(id,key){
+      const found=findLesson(id);if(!found)return dashboard();const {lesson}=found,steps=lessonSteps(lesson),i=steps.findIndex(s=>s[0]===key);
+      if(!isStepUnlocked(lesson,key))return toast('أكمل المرحلة السابقة أولًا');
+      if(!stageReady(lesson,key))return toast('أكمل المطلوب في هذه المرحلة أولًا');
+      const flow=getLessonFlow(lesson);if(!flow.completed.includes(key))flow.completed.push(key);const next=steps[i+1]?.[0];flow.current=next||key;save();
+      if(next)return renderSection(id,next);renderLesson(id);
+    }
+    function youtubePlayer(videoId,title){return `<div class="video-shell"><iframe src="https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&cc_load_policy=1" title="${escapeHTML(title)}" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-note">${icon('info')}<span>يحتاج الفيديو إلى اتصال بالإنترنت. إذا تعذر تشغيله يمكنك <a href="https://youtu.be/${videoId}" target="_blank" rel="noopener">فتحه مباشرة في YouTube</a>.</span></div>`}
+    function renderStageCheck(lesson,key){
+      const flow=getLessonFlow(lesson),q=stageCheck(lesson,key),solved=flow.checks[key]===true;
+      return `<div class="stage-check ${solved?'solved':''}"><h3>سؤال التحقق</h3>${solved?`<div class="solved-message">${icon('check')} إجابة صحيحة، يمكنك الانتقال للمرحلة التالية.</div>`:`<p>${q.q}</p><div class="check-options">${q.opts.map((o,i)=>`<button class="check-option" data-action="stage-answer" data-id="${lesson.id}" data-section="${key}" data-index="${i}">${escapeHTML(o)}</button>`).join('')}</div>`}</div>`;
+    }
+    function renderStageFooter(lesson,key){
+      const steps=lessonSteps(lesson),i=steps.findIndex(s=>s[0]===key),prev=steps[i-1],next=steps[i+1],ready=stageReady(lesson,key);
+      return `<div class="stage-footer"><div>${prev?`<button class="btn btn-ghost" data-action="open-section" data-id="${lesson.id}" data-section="${prev[0]}">${icon('back')} المرحلة السابقة</button>`:''}</div><div class="hint">${ready?'أتممت المطلوب في هذه المرحلة.':'أكمل المطلوب ليظهر لك طريق المتابعة.'}</div><button class="btn btn-primary" data-action="complete-stage" data-id="${lesson.id}" data-section="${key}" ${ready?'':'disabled'}>${icon(next?.[0]==='quiz'?'quiz':'play')} ${next?.[0]==='quiz'?'ابدأ الاختبار':'التالي'}</button></div>`;
+    }
+    function isUnitUnlocked(i){return i===0||units[i-1].lessons.every(l=>state.completed.includes(l.id))}
+    function isLessonUnlocked(unit,li){const ui=units.indexOf(unit);return isUnitUnlocked(ui)&&(li===0||state.completed.includes(unit.lessons[li-1].id))}
+    function unitProgress(unit){return Math.round(unit.lessons.filter(l=>state.completed.includes(l.id)).length/unit.lessons.length*100)}
+    function overallProgress(){return Math.round(state.completed.length/allLessons().length*100)}
+    function setView(html,view){
+      currentView=view;
+      document.querySelector('.floating-developer')?.classList.toggle('is-visible',view?.page==='dashboard'||view?.page==='unit');
+      if(state&&view?.page&&view.page!=='splash'){state.lastView=view;save()}
+      const el=document.getElementById('view');el.innerHTML=`<div class="page-enter">${html}</div>`;window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function dashboard(){
+      const p=overallProgress(),resumeLesson=!!state.lastLesson,resumeQuestion=!!state.lastQuestion;
+      const unitsHTML=units.map((u,i)=>{const unlocked=isUnitUnlocked(i),up=unitProgress(u);return `<button class="unit-card ${unlocked?'':'locked'}" style="background-image:url('${u.image}')" data-action="${unlocked?'open-unit':'locked'}" data-id="${u.id}"><div class="unit-card-body"><span class="pill">الوحدة ${u.number}</span><h3>${u.title}</h3><p>${u.description}</p><div class="unit-meta"><span>${unlocked?'ابدأ رحلة الوحدة':'أكمل الوحدة السابقة'}</span><span class="ring" style="--p:${up}">${up}%</span></div></div>${unlocked?'':`<span class="lock-badge">${icon('lock')}</span>`}</button>`}).join('');
+      setView(`
+        <section class="hero" style="background-image:url('${IMG}dashboard-hero.webp')"><div class="hero-copy"><span class="eyebrow">مرحبًا يا ${escapeHTML(state.name)}</span><h1>هيا نصنع يومًا جميلًا بالكلمات!</h1><p>تعلم، استمع، اقرأ، العب، واجمع النجوم في رحلتك مع اللغة العربية.</p><div class="hero-actions"><button class="btn btn-gold" data-action="resume-question" ${resumeQuestion?'':'disabled'}>${icon('target')} أكمل آخر سؤال</button><button class="btn btn-ghost" data-action="resume-lesson" ${resumeLesson?'':'disabled'}>${icon('book')} أكمل آخر درس</button></div><div class="progress-wrap"><div class="progress-label"><span>تقدمك في المنهج</span><span>${p}%</span></div><div class="progress-track"><div class="progress-fill" style="width:${p}%"></div></div></div></div></section>
+        <div class="dash-cards">
+          <div class="dash-mini"><span class="mini-icon">${icon('target')}</span><div><strong>${state.xp}</strong><small>نقاط الخبرة</small></div></div>
+          <div class="dash-mini"><span class="mini-icon" style="background:linear-gradient(135deg,#ffbf3f,#ff6b5e)">${icon('star')}</span><div><strong>${state.stars}</strong><small>النجوم</small></div></div>
+          <div class="dash-mini"><span class="mini-icon" style="background:linear-gradient(135deg,#40a96b,#0d8f92)">${icon('check')}</span><div><strong>${state.completed.length}/12</strong><small>الدروس المكتملة</small></div></div>
+          <button class="dash-mini" data-action="final-quiz"><span class="mini-icon" style="background:linear-gradient(135deg,#8357c7,#ff6b5e)">${icon('trophy')}</span><div><strong>التحدي النهائي</strong><small>${state.completed.length===12?'ابدأ الآن':'يفتح بعد إكمال الدروس'}</small></div></button>
+        </div>
+        <div class="section-head"><div><h2>خريطة رحلتك</h2><p>تفتح الدروس بالتتابع، ويحفظ التطبيق مكانك بعد كل خطوة.</p></div></div>
+        <div class="units-grid">${unitsHTML}</div>
+        <div class="section-head"><div><h2>إدارة التقدم</h2><p>إعادة التقدم تخص الطالب الحالي فقط.</p></div><button class="btn btn-danger" data-action="reset">${icon('reset')} إعادة التقدم</button></div>
+      `,{page:'dashboard'});
+    }
+    function renderUnit(id){
+      const unit=units.find(u=>u.id===id);if(!unit)return dashboard();
+      const cards=unit.lessons.map((l,i)=>{const unlocked=isLessonUnlocked(unit,i),done=state.completed.includes(l.id);return `<button class="lesson-card ${unlocked?'':'locked'}" data-action="${unlocked?'open-lesson':'locked'}" data-id="${l.id}"><div class="lesson-img" style="background-image:url('${l.image}')"></div><div class="lesson-info"><span class="pill">الدرس ${i+1} - ${l.type}</span><h3>${l.title}</h3><p>${l.intro}</p><div class="lesson-bottom"><span>${done?'مكتمل':unlocked?'ابدأ الدرس':'أكمل الدرس السابق'}</span><span>${done?icon('check'):unlocked?icon('play'):icon('lock')}</span></div></div>${unlocked?'':`<span class="lock-badge">${icon('lock')}</span>`}</button>`}).join('');
+      const storyUnlocked=unit.lessons.every(l=>state.completed.includes(l.id));
+      const reviewHTML=storyUnlocked?`<section class="unit-video-card"><h2>مراجعة الوحدة بالفيديو</h2><p>شاهد المراجعة قبل دخول تقييم الوحدة.</p>${youtubePlayer(unit.reviewVideoId,`مراجعة الوحدة ${unit.number}`)}</section>`:`<section class="unit-video-card"><h2>مراجعة الوحدة بالفيديو</h2><p>${icon('lock')} تفتح المراجعة بعد إكمال دروس الوحدة الأربعة.</p></section>`;
+      setView(`<div class="back-row"><button class="btn btn-ghost" data-action="home">${icon('back')} الرئيسية</button><span class="pill">${unitProgress(unit)}% مكتمل</span></div>
+        <section class="cover-banner" style="background-image:url('${unit.image}')"><div class="cover-copy"><span class="eyebrow">الوحدة ${unit.number}</span><h1>${unit.title}</h1><p>${unit.description}</p><button class="btn btn-gold" data-action="unit-quiz" data-id="${unit.id}" ${storyUnlocked?'':'disabled'}>${icon('target')} تقييم الوحدة - 50 سؤالًا</button></div></section>
+        <div class="section-head"><div><h2>دروس الوحدة</h2><p>أكمل كل درس ليفتح الدرس التالي.</p></div></div><div class="lessons-grid">${cards}</div>
+        <button class="lesson-card story-card ${storyUnlocked?'':'locked'}" data-action="${storyUnlocked?'story':'locked'}" data-id="${unit.id}"><div class="lesson-img" style="background-image:url('${unit.story.image}')"></div><div class="lesson-info"><span class="pill">اقرأ مع الأسرة</span><h3>${unit.story.title}</h3><p>قصة للقراءة والمتعة وبناء عادة القراءة داخل الأسرة.</p><div class="lesson-bottom"><span>${storyUnlocked?'افتح القصة':'تفتح بعد دروس الوحدة'}</span>${storyUnlocked?icon('book'):icon('lock')}</div></div></button>${reviewHTML}` ,{page:'unit',unitId:id});
+    }
+    function renderLesson(id){
+      const found=findLesson(id);if(!found)return dashboard();const {unit,lesson,index}=found;
+      state.lastLesson={lessonId:id,section:'menu'};save();
+      const steps=lessonSteps(lesson),flow=getLessonFlow(lesson),continueKey=steps.find(s=>!stepDone(lesson,s[0]))?.[0]||'quiz',progress=lessonStageProgress(lesson);
+      const sections=steps.map(s=>{const done=stepDone(lesson,s[0]),unlocked=isStepUnlocked(lesson,s[0]),current=unlocked&&!done&&(flow.current===s[0]||continueKey===s[0]);return `<button class="section-card ${done?'done':''} ${current?'current':''} ${unlocked?'':'locked'}" data-action="${unlocked?'open-section':'locked'}" data-id="${id}" data-section="${s[0]}"><span class="section-icon">${icon(done?'check':unlocked?s[3]:'lock')}</span><span><strong>${s[1]}</strong><br><small>${s[2]}</small><span class="step-state">${icon(done?'check':unlocked?'play':'lock')} ${done?'مكتملة':current?'أكمل من هنا':unlocked?'متاحة':'مقفلة'}</span></span></button>`}).join('');
+      const teacherReport=state.completed.includes(id)?lessonCompletionPanel(id):`<section class="teacher-report is-locked"><h3>${icon('lock')} إبلاغ المعلم عبر واتساب</h3><p>بعد إتمام جميع مراحل الدرس واجتياز الاختبار سيظهر هنا زر إرسال الرسالة إلى المعلم، ويُكتب اسم الدرس تلقائيًا.</p><div class="teacher-report-actions"><button class="btn btn-primary" disabled>إرسال رسالة للمعلم عبر واتساب — يفتح بعد إتمام الدرس</button></div></section>`;
+      setView(`<div class="back-row"><button class="btn btn-ghost" data-action="open-unit" data-id="${unit.id}">${icon('back')} الوحدة</button><span class="pill">الدرس ${index+1} - ${lesson.type}</span></div><section class="cover-banner" style="background-image:url('${lesson.image}')"><div class="cover-copy"><span class="eyebrow">الوحدة ${unit.number}</span><h1>${lesson.title}</h1><p>${lesson.intro}</p><button class="btn btn-gold" data-action="open-section" data-id="${id}" data-section="${continueKey}">${icon('play')} ${progress?'أكمل رحلتك':'ابدأ التهيئة'}</button></div></section><div class="lesson-journey-head"><div><h2>رحلة الدرس</h2><p>أكمل كل مرحلة لتفتح المرحلة التي تليها.</p></div><div class="journey-progress"><div class="progress-track"><div class="progress-fill" style="width:${progress}%"></div></div><strong>${progress}%</strong></div></div><div class="sections-grid">${sections}</div>${teacherReport}`,{page:'lesson',lessonId:id});
+    }
+    function renderSection(id,key){
+      const found=findLesson(id);if(!found)return dashboard();const {unit,lesson}=found;
+      if(!isStepUnlocked(lesson,key)){toast('أكمل المرحلة السابقة أولًا');return renderLesson(id)}
+      if(key==='quiz')return startQuiz({kind:'lesson',id});
+      state.lastLesson={lessonId:id,section:key};getLessonFlow(lesson).current=key;save();
+      const flow=getLessonFlow(lesson);
+      let body='';
+      if(key==='warmup')body=`<h2>التهيئة للدرس</h2><div class="warmup-intro"><span class="section-icon">${icon('target')}</span><div><h3>فكر بحرية، لا توجد إجابة واحدة فقط</h3><p>اكتب ما تتوقعه وما تعرفه قبل أن تشاهد الفيديو. تُحفظ إجاباتك تلقائيًا.</p></div></div><div class="warmup-grid">${lesson.warmup.map((q,i)=>`<div class="warmup-question"><label for="warmup-${id}-${i}">${i+1}. ${q}</label><textarea id="warmup-${id}-${i}" data-warmup="${id}" data-index="${i}" placeholder="اكتب إجابتك هنا...">${escapeHTML(flow.warmup[i]||'')}</textarea></div>`).join('')}</div>${renderStageFooter(lesson,key)}`;
+      if(key==='video'){
+        const player=lesson.videoId?youtubePlayer(lesson.videoId,`فيديو درس ${lesson.title}`):`<div class="video-placeholder"><div><span class="section-icon">${icon('play')}</span><h3>سيُضاف الفيديو قريبًا</h3><p>يمكنك متابعة الدرس الآن دون أن تتوقف رحلتك.</p></div></div>`;
+        body=`<h2>فيديو الدرس: ${lesson.title}</h2><p class="lead">شاهد الفيديو بتركيز، ثم أجب عن سؤال التأكيد.</p>${player}${lesson.videoId?`<div class="confirm-box"><h3>هل شاهدت الفيديو؟</h3><div class="choice-row"><label class="choice-label"><input type="radio" name="video-${id}" data-video-confirm="${id}" value="yes" ${flow.videoConfirmed===true?'checked':''}> نعم، شاهدته</label><label class="choice-label"><input type="radio" name="video-${id}" data-video-confirm="${id}" value="no" ${flow.videoConfirmed===false?'checked':''}> ليس بعد</label></div></div>`:''}${renderStageFooter(lesson,key)}`;
+      }
+      if(key==='explanation')body=`<div class="back-row"><h2>شرح الدرس بالتفصيل</h2><span class="pill">صفحات الكتاب ${lesson.bookPages}</span></div><p class="lead">في نهاية هذا الجزء يستطيع الطالب أن:</p><div class="objectives">${lesson.objectives.map((o,i)=>`<div class="objective"><b>${i+1}</b><span>${o}</span></div>`).join('')}</div><div style="margin-top:19px"><h3>نَصُّ الِاسْتِمَاعِ الْمُشَكَّلُ</h3><p class="lead">هَذَا هُوَ النَّصُّ الَّذِي سَيَقْرَؤُهُ الصَّوْتُ حَرْفِيًّا بِالْحَرَكَاتِ الْمَكْتُوبَةِ.</p><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="btn btn-gold" data-action="speak-text" data-id="${id}">${icon('speaker')} اِسْتَمِعْ إِلَى النَّصِّ الْمُشَكَّلِ</button><button class="btn btn-ghost" data-action="stop-speech">إِيقَافُ الْقِرَاءَةِ</button></div></div><div class="reading-box" lang="ar-SA" dir="rtl" aria-label="نَصُّ الِاسْتِمَاعِ الْمُشَكَّلُ" style="margin-top:14px">${escapeHTML(lesson.speechText)}</div><div class="deep-dive">${lesson.deepDive.map(x=>`<article class="deep-card"><b>${x[0]}</b><p>${x[1]}</p></article>`).join('')}</div><h3>خريطة الفهم</h3><ul class="summary-list">${lesson.summary.map(x=>`<li>${x}</li>`).join('')}</ul>${renderStageCheck(lesson,key)}${renderStageFooter(lesson,key)}`;
+      if(key==='vocab')body=`<h2>المفردات الجديدة</h2><p class="lead">اضغط البطاقة لتقلبها، واضغط زر الصوت لتسمع الكلمة في نطق واضح.</p><div class="vocab-grid">${lesson.vocab.map(v=>`<div class="vocab-card" data-action="flip-vocab"><div class="vocab-inner"><div class="vocab-face vocab-front"><div class="vocab-word">${v[0]}</div><small>اضغط لمعرفة المعنى</small><button class="speak-btn" data-action="speak-word" data-word="${encodeURIComponent(v[0])}" aria-label="استمع">${icon('speaker')}</button></div><div class="vocab-face vocab-back"><strong>${v[1]}</strong><small>${v[2]}</small></div></div></div>`).join('')}</div>${renderStageCheck(lesson,key)}${renderStageFooter(lesson,key)}`;
+      if(key==='grammar')body=`<h2>${lesson.grammar.title}</h2><p class="lead">اقرأ القاعدة ثم لاحظ كيف نستخدمها في الأمثلة.</p><ul class="point-list">${lesson.grammar.points.map(x=>`<li>${x}</li>`).join('')}</ul><h3>أمثلة بسيطة</h3><div class="examples">${lesson.grammar.examples.map(x=>`<div class="example">${x}</div>`).join('')}</div>${renderStageCheck(lesson,key)}${renderStageFooter(lesson,key)}`;
+      if(key==='spelling')body=`<h2>${lesson.spelling.title}</h2><p class="lead">انطق ببطء، واستمع إلى الصوت، ثم لاحظ شكل الكلمة.</p><ul class="point-list">${lesson.spelling.points.map(x=>`<li>${x}</li>`).join('')}</ul><h3>انطق ثم لاحظ</h3><div class="examples">${lesson.spelling.examples.map(x=>`<button class="example" data-action="speak-word" data-word="${encodeURIComponent(x)}">${x}</button>`).join('')}</div>${renderStageCheck(lesson,key)}${renderStageFooter(lesson,key)}`;
+      if(key==='activities')body=`<h2>أتحدث وأكتب</h2><div class="tasks-grid"><div class="task"><h3>أتحدث</h3><p class="lead">${lesson.activities.speak}</p><button class="btn btn-ghost" data-action="speak-word" data-word="${encodeURIComponent(lesson.activities.speak)}">${icon('speaker')} استمع للتعليمات</button></div><div class="task"><h3>أكتب</h3><p>${lesson.activities.write}</p><textarea data-note="${id}" placeholder="اكتب إجابتك هنا...">${escapeHTML(state.notes[id]||'')}</textarea></div></div>${renderStageFooter(lesson,key)}`;
+      setView(`<div class="back-row"><button class="btn btn-ghost" data-action="open-lesson" data-id="${id}">${icon('back')} رحلة الدرس</button><span class="pill">${lesson.title}</span></div><section class="content-panel">${body}</section>`,{page:'section',lessonId:id,section:key,unitId:unit.id});
+    }
+    function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+    function seededShuffle(arr,seed){let x=hash(seed),a=[...arr];for(let i=a.length-1;i>0;i--){x=(Math.imul(x,1664525)+1013904223)>>>0;const j=x%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+    function options(correct,others,seed){return seededShuffle([correct,...others.filter(x=>x!==correct).slice(0,3)],seed)}
+    function lessonQuestions(lesson){
+      const manual=lesson.manual.map((q,i)=>({...q,id:`${lesson.id}-m${i}`}));
+      const meanings=lesson.vocab.map(v=>v[1]),words=lesson.vocab.map(v=>v[0]);
+      const generated=[];
+      lesson.vocab.forEach((v,i)=>{
+        generated.push({id:`${lesson.id}-vm${i}`,q:`ما معنى كلمة «${v[0]}»؟`,opts:options(v[1],seededShuffle(meanings.filter(x=>x!==v[1]),v[0]),v[0]+'m'),a:v[1],exp:v[2]});
+        generated.push({id:`${lesson.id}-vw${i}`,q:`اختر الكلمة التي معناها: «${v[1]}».`,opts:options(v[0],seededShuffle(words.filter(x=>x!==v[0]),v[0]),v[0]+'w'),a:v[0],exp:v[2]});
+      });
+      return seededShuffle([...manual,...generated],lesson.id+'questions');
+    }
+    function quizData(ctx){
+      if(ctx.kind==='lesson'){const l=findLesson(ctx.id)?.lesson;return l?lessonQuestions(l):[]}
+      if(ctx.kind==='unit'){const u=units.find(x=>x.id===ctx.id);return seededShuffle(u.lessons.flatMap(lessonQuestions),ctx.id+'bank').slice(0,50)}
+      return seededShuffle(allLessons().flatMap(lessonQuestions),'final-bank').slice(0,100);
+    }
+    function quizMeta(ctx){
+      if(ctx.kind==='lesson'){const l=findLesson(ctx.id)?.lesson;return {title:`اختبار: ${l.title}`,image:l.image}}
+      if(ctx.kind==='unit'){const u=units.find(x=>x.id===ctx.id);return {title:`تقييم الوحدة: ${u.title}`,image:u.image}}
+      return {title:'التحدي النهائي للمنهج',image:IMG+'dashboard-hero.webp'};
+    }
+    function qKey(ctx){return `${ctx.kind}-${ctx.id}`}
+    function rewardCorrectAnswer(ctx,q){
+      const rewarded=state.rewardedAnswers||(state.rewardedAnswers=[]),id=`${ctx.kind}:${ctx.id}:${q.id||q.q}`;
+      if(rewarded.includes(id))return 0;
+      rewarded.push(id);
+      const xp=ctx.kind==='final'?20:ctx.kind==='unit'?15:10;
+      const coins=ctx.kind==='final'?5:ctx.kind==='unit'?3:2;
+      state.xp+=xp;state.coins+=coins;
+      return xp;
+    }
+    function startQuiz(ctx,forceResume=true){
+      clearTimeout(advanceTimer);const questions=quizData(ctx);if(!questions.length)return dashboard();
+      const key=qKey(ctx);let p=state.quizzes[key];
+      if(!p||p.index>=questions.length)p={index:0,correct:0,answered:0,locked:false};
+      p.locked=false;state.quizzes[key]=p;state.lastQuestion={ctx,index:p.index};
+      if(ctx.kind==='lesson')state.lastLesson={lessonId:ctx.id,section:'quiz'};save();renderQuiz(ctx);
+    }
+    function renderQuiz(ctx){
+      const questions=quizData(ctx),key=qKey(ctx),p=state.quizzes[key],q=questions[p.index],meta=quizMeta(ctx);
+      if(!q)return finishQuiz(ctx);
+      state.lastQuestion={ctx,index:p.index};save();
+      setView(`<div class="back-row"><button class="btn btn-ghost" data-action="quiz-back" data-kind="${ctx.kind}" data-id="${ctx.id}">${icon('back')} خروج آمن</button><span class="pill">${meta.title}</span></div><div class="quiz-shell"><div class="quiz-top"><span class="quiz-count">السؤال ${p.index+1} من ${questions.length}</span><span class="quiz-score">${p.correct} إجابة صحيحة</span></div><div class="progress-track" style="background:#dcecef;margin-bottom:14px"><div class="progress-fill" style="width:${Math.round((p.index)/questions.length*100)}%"></div></div><section class="quiz-card"><span class="eyebrow">فكر ثم اختر</span><h2 class="quiz-question">${q.q}</h2><div class="answers">${q.opts.map((o,i)=>`<button class="answer" data-action="answer" data-index="${i}" data-kind="${ctx.kind}" data-id="${ctx.id}">${o}</button>`).join('')}</div><div id="feedbackArea"></div></section></div>`,{page:'quiz',ctx});
+    }
+    function answer(ctx,index){
+      const key=qKey(ctx),p=state.quizzes[key];if(p.locked)return;const qs=quizData(ctx),q=qs[p.index],chosen=q.opts[index],ok=chosen===q.a;p.locked=true;p.answered++;const earned=ok?rewardCorrectAnswer(ctx,q):0;if(ok)p.correct++;
+      const buttons=[...document.querySelectorAll('.answer')];buttons.forEach((b,i)=>{b.disabled=true;if(q.opts[i]===q.a)b.classList.add('correct');else if(i===index)b.classList.add('wrong')});
+      document.getElementById('feedbackArea').innerHTML=`<div class="feedback ${ok?'ok':'bad'}">${ok?'أحسنت! إجابة صحيحة.':'الإجابة الصحيحة: '+q.a}${ok?`<br><span class="reward-note">${icon('target')} ${earned?`+${earned} نقطة خبرة`:'مكافأتك عن هذا السؤال محسوبة بالفعل'}</span>`:''}<br><small>${q.exp||''}</small></div><div class="quiz-next"><button class="btn btn-primary" data-action="next-question" data-kind="${ctx.kind}" data-id="${ctx.id}">${icon('play')} التالي الآن</button></div>`;
+      sound(ok);if(ok)confetti();save();if(ok&&earned)pulseXP();advanceTimer=setTimeout(()=>nextQuestion(ctx),6000);
+    }
+    function nextQuestion(ctx){
+      clearTimeout(advanceTimer);const key=qKey(ctx),p=state.quizzes[key],len=quizData(ctx).length;p.index++;p.locked=false;
+      if(p.index>=len){finishQuiz(ctx)}else{state.lastQuestion={ctx,index:p.index};save();renderQuiz(ctx)}
+    }
+    function lessonCompletionPanel(id){
+      const found=findLesson(id);if(!found)return '';const {unit,lesson,index}=found,next=unit.lessons[index+1],nextLabel=next?'الانتقال للدرس التالي':'الانتقال إلى تقييم الوحدة';
+      return `<section class="teacher-report"><h3>${icon('check')} أتممت الدرس بنجاح</h3><p>أرسل رسالة جاهزة إلى معلمك لإخباره بإتمام دراسة الدرس وحل تدريباته.</p><label>اسم الطالب الذي سيظهر للمعلم<input data-teacher-message-name="${id}" value="${escapeHTML(state.name||'')}" placeholder="اكتب اسمك هنا" autocomplete="name"></label><div class="teacher-report-message">مرحبًا معلمي الفاضل، أنا <strong data-teacher-preview="${id}">${escapeHTML(state.name||'اسم الطالب')}</strong>، وقد انتهيت من دراسة وحل درس <strong>${escapeHTML(lesson.title)}</strong>.</div><div class="teacher-report-actions"><button class="btn btn-primary" data-action="send-teacher-whatsapp" data-id="${id}">${icon('play')} إرسال رسالة للمعلم عبر واتساب</button><button class="btn btn-ghost" data-action="next-lesson" data-id="${id}">${icon('play')} ${nextLabel}</button><button class="btn btn-ghost" data-action="home">${icon('home')} العودة إلى الصفحة الرئيسية</button></div></section>`;
+    }
+    function openNextLesson(id){
+      const found=findLesson(id);if(!found)return dashboard();const {unit,index}=found,next=unit.lessons[index+1];
+      if(next)return renderLesson(next.id);return renderUnit(unit.id);
+    }
+    function finishQuiz(ctx){
+      clearTimeout(advanceTimer);const key=qKey(ctx),p=state.quizzes[key],len=quizData(ctx).length,percent=Math.round(p.correct/len*100),passed=percent>=70;
+      if(passed&&!state.quizAwards.includes(key)){
+        state.quizAwards.push(key);const gain=ctx.kind==='final'?300:ctx.kind==='unit'?150:60;state.xp+=gain;state.stars+=percent>=90?3:percent>=70?2:1;state.coins+=(ctx.kind==='lesson'?20:50);
+      }
+      if(ctx.kind==='lesson'&&passed){
+        if(!state.completed.includes(ctx.id))state.completed.push(ctx.id);
+        const lesson=findLesson(ctx.id)?.lesson;if(lesson){const flow=getLessonFlow(lesson);flow.completed=lessonSteps(lesson).map(s=>s[0]);flow.current='quiz'}
+      }
+      if(ctx.kind==='unit'&&passed&&!state.unitAssessments.includes(ctx.id))state.unitAssessments.push(ctx.id);
+      if(ctx.kind==='final'&&passed)state.finalCompleted=true;
+      state.lastQuestion=null;save();if(passed)confetti();
+      setView(`<section class="result-card"><div class="result-medal">${icon(passed?'trophy':'target')}</div><h2>${passed?'أحسنت يا بطل!':'محاولة جيدة'}</h2><p>${passed?'أنهيت التحدي بنجاح وحصلت على مكافأة جديدة.':'راجع الدرس ثم حاول مرة أخرى. أنت تستطيع!'}</p><div class="result-stats"><div class="result-stat"><strong>${percent}%</strong><small>النتيجة</small></div><div class="result-stat"><strong>${p.correct}</strong><small>إجابة صحيحة</small></div><div class="result-stat"><strong>${len-p.correct}</strong><small>تحتاج مراجعة</small></div></div>${ctx.kind==='lesson'&&passed?lessonCompletionPanel(ctx.id):''}<div class="hero-actions" style="justify-content:center"><button class="btn btn-primary" data-action="home">${icon('home')} الصفحة الرئيسية</button>${ctx.kind==='lesson'?`<button class="btn btn-ghost" data-action="open-lesson" data-id="${ctx.id}">${icon('book')} محطات الدرس</button>`:''}<button class="btn btn-gold" data-action="retry-quiz" data-kind="${ctx.kind}" data-id="${ctx.id}">${icon('reset')} أعد المحاولة</button>${ctx.kind==='final'&&passed?`<button class="btn btn-ghost" data-action="certificate">${icon('trophy')} الشهادة</button>`:''}</div></section>`,{page:'result',ctx});
+    }
+    function retryQuiz(ctx){state.quizzes[qKey(ctx)]={index:0,correct:0,answered:0,locked:false};save();startQuiz(ctx)}
+    function renderStory(unitId){
+      const u=units.find(x=>x.id===unitId),s=u.story;state.lastLesson={lessonId:u.lessons[3].id,section:'story'};save();
+      setView(`<div class="back-row"><button class="btn btn-ghost" data-action="open-unit" data-id="${unitId}">${icon('back')} الوحدة</button><span class="pill">اقرأ مع الأسرة</span></div><section class="cover-banner" style="background-image:url('${s.image}')"><div class="cover-copy"><span class="eyebrow">قصة للمتعة</span><h1>${s.title}</h1><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="btn btn-gold" data-action="speak-story" data-id="${unitId}">${icon('speaker')} اِسْتَمِعْ إِلَى الْقِصَّةِ الْمُشَكَّلَةِ</button><button class="btn btn-ghost" data-action="stop-speech">إِيقَافُ الْقِرَاءَةِ</button></div></div></section><section class="content-panel" style="margin-top:17px"><h2>شاهد القصة</h2>${youtubePlayer(s.videoId,`قصة ${s.title}`)}<h2 style="margin-top:24px">نَصُّ الْقِصَّةِ الْمُشَكَّلُ: ${s.title}</h2><div class="reading-box" lang="ar-SA" dir="rtl">${escapeHTML(s.speechText)}</div><h3>القيمة التي تعلمناها</h3><div class="example">${s.moral}</div></section>`,{page:'story',unitId});
+    }
+    function renderCertificate(){
+      const date=new Intl.DateTimeFormat('ar-EG',{dateStyle:'long'}).format(new Date());
+      setView(`<div class="back-row no-print"><button class="btn btn-ghost" data-action="home">${icon('back')} الرئيسية</button><button class="btn btn-gold" data-action="print">${icon('print')} طباعة أو حفظ PDF</button></div><section id="certificate" style="min-height:650px;background:linear-gradient(145deg,#fffdf4,#ecfbff);border:12px double #d6a52f;border-radius:24px;padding:55px 35px;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden"><span class="eyebrow">مدارس الأندلس الأهلية - المسار المصري</span><h1 style="font-size:clamp(2.3rem,6vw,4.4rem);color:var(--navy);margin:30px 0 8px">شهادة إنجاز</h1><p class="lead">تُمنح هذه الشهادة إلى الطالب/الطالبة</p><h2 style="font-size:clamp(2rem,5vw,3.5rem);color:var(--purple);margin:15px">${escapeHTML(state.name)}</h2><p class="lead">من فصل <strong>${escapeHTML(state.cls||'الصف الثاني')}</strong><br>لإتمام منهج اللغة العربية للصف الثاني الابتدائي - الفصل الدراسي الأول<br>العام الدراسي 2026-2027<br>بجد واجتهاد وتميز.</p><div style="display:flex;justify-content:space-around;gap:30px;margin-top:55px;flex-wrap:wrap"><div><strong>الأستاذ أحمد حسن عز الدين</strong><br><small>معلم المادة</small></div><div><strong>${date}</strong><br><small>تاريخ الإنجاز</small></div></div><p style="margin-top:55px;color:#6a7f8c;font-size:.75rem">مطور التطبيق: مستر محمد فريد</p></section>`,{page:'certificate'});
+    }
+    function resumeLesson(){
+      if(!state.lastLesson)return toast('لا يوجد درس محفوظ بعد');const {lessonId,section}=state.lastLesson;
+      if(section==='menu')renderLesson(lessonId);else if(section==='story'){const f=findLesson(lessonId);renderStory(f.unit.id)}else renderSection(lessonId,section);
+    }
+    function resumeQuestion(){if(!state.lastQuestion)return toast('لا يوجد سؤال محفوظ بعد');const {ctx,index}=state.lastQuestion;const key=qKey(ctx);if(state.quizzes[key])state.quizzes[key].index=index;startQuiz(ctx,true)}
+    function restoreActiveSession(){
+      const profiles=readProfiles(),key=localStorage.getItem(ACTIVE),saved=key&&profiles[key];
+      if(!saved){prefillActive();return}
+      activeKey=key;state=normalizeState(saved,saved.name||'',saved.cls||'');showApp();
+      const view=state.lastView;
+      if(view?.page==='unit')return renderUnit(view.unitId);
+      if(view?.page==='lesson')return renderLesson(view.lessonId);
+      if(view?.page==='section')return renderSection(view.lessonId,view.section);
+      if(view?.page==='quiz'&&view.ctx)return startQuiz(view.ctx,true);
+      if(view?.page==='result'&&view.ctx)return finishQuiz(view.ctx);
+      if(view?.page==='story')return renderStory(view.unitId);
+      if(view?.page==='certificate')return renderCertificate();
+      if(state.lastQuestion)return resumeQuestion();
+      if(state.lastLesson)return resumeLesson();
+      dashboard();
+    }
+    function resetProgress(){
+      if(!confirm(`هل تريد حذف تقدم ${state.name} فقط؟ لا يمكن التراجع عن هذا الإجراء.`))return;
+      const name=state.name,cls=state.cls;state=defaultState(name,cls);save();dashboard();toast('تمت إعادة تقدم الطالب الحالي');
+    }
+    function openTeacher(){document.getElementById('teacherModal').classList.remove('hidden')}
+    function closeTeacher(){document.getElementById('teacherModal').classList.add('hidden')}
+    function syncStageFooter(lesson,key){
+      const ready=stageReady(lesson,key),btn=document.querySelector(`.stage-footer [data-action="complete-stage"][data-section="${key}"]`),hint=document.querySelector('.stage-footer .hint');
+      if(btn)btn.disabled=!ready;if(hint)hint.textContent=ready?'أتممت المطلوب في هذه المرحلة.':'أكمل المطلوب ليظهر لك طريق المتابعة.';
+    }
+
+    document.addEventListener('click',e=>{
+      const t=e.target.closest('[data-action]');if(!t)return;const a=t.dataset.action,id=t.dataset.id,kind=t.dataset.kind;
+      if(a==='teacher')return openTeacher();if(a==='close-teacher')return closeTeacher();if(a==='home')return dashboard();if(a==='profile')return showSplash();
+      if(a==='sound'){state.sound=!state.sound;if(!state.sound)stopSpeech();save();refreshHeader();toast(state.sound?'تم تشغيل الصوت':'تم إيقاف الصوت');return}
+      if(a==='open-unit')return renderUnit(id);if(a==='open-lesson')return renderLesson(id);if(a==='open-section')return renderSection(id,t.dataset.section);
+      if(a==='complete-stage')return completeStage(id,t.dataset.section);
+      if(a==='stage-answer'){
+        const lesson=findLesson(id)?.lesson;if(!lesson)return;const key=t.dataset.section,q=stageCheck(lesson,key),chosen=q.opts[Number(t.dataset.index)];
+        if(chosen===q.a){getLessonFlow(lesson).checks[key]=true;save();sound(true);confetti();toast('أحسنت! فتحت طريق المرحلة التالية');return renderSection(id,key)}
+        sound(false);t.style.borderColor='var(--danger)';t.style.background='#fff0f1';return toast('حاول مرة أخرى، وارجع إلى الشرح إذا احتجت');
+      }
+      if(a==='locked')return toast('أكمل المرحلة السابقة أولًا');if(a==='story')return renderStory(id);if(a==='unit-quiz')return startQuiz({kind:'unit',id});
+      if(a==='final-quiz'){if(state.completed.length<12)return toast('أكمل الدروس الاثني عشر أولًا');return startQuiz({kind:'final',id:'all'})}
+      if(a==='answer')return answer({kind,id},Number(t.dataset.index));if(a==='next-question')return nextQuestion({kind,id});if(a==='retry-quiz')return retryQuiz({kind,id});
+      if(a==='quiz-back'){clearTimeout(advanceTimer);if(kind==='lesson')return renderLesson(id);if(kind==='unit')return renderUnit(id);return dashboard()}
+      if(a==='next-lesson')return openNextLesson(id);
+      if(a==='send-teacher-whatsapp'){
+        const lesson=findLesson(id)?.lesson,name=document.querySelector(`[data-teacher-message-name="${id}"]`)?.value.trim();
+        if(!lesson)return dashboard();if(!name)return toast('اكتب اسم الطالب أولًا لإرسال الرسالة');
+        const message=`مرحبًا معلمي الفاضل، أنا ${name}، وقد انتهيت من دراسة وحل درس ${lesson.title}.`;
+        window.open(`https://wa.me/${TEACHER_WHATSAPP}?text=${encodeURIComponent(message)}`,'_blank','noopener');return;
+      }
+      if(a==='resume-question')return resumeQuestion();if(a==='resume-lesson')return resumeLesson();if(a==='reset')return resetProgress();
+      if(a==='flip-vocab'){if(e.target.closest('.speak-btn'))return;t.classList.toggle('flipped');return}
+      if(a==='speak-word')return speakVocalized(decodeURIComponent(t.dataset.word));if(a==='speak-text'){const lesson=findLesson(id).lesson;return speakVocalized(lesson.speechText)}if(a==='speak-story'){const story=units.find(u=>u.id===id).story;return speakVocalized(story.speechText)}if(a==='stop-speech')return stopSpeech();
+      if(a==='certificate')return renderCertificate();if(a==='print')return window.print();
+    });
+    document.addEventListener('input',e=>{
+      if(e.target.matches('#studentName,#studentClass'))updateSplashResume();
+      if(e.target.dataset.warmup&&state){const lesson=findLesson(e.target.dataset.warmup)?.lesson;if(lesson){getLessonFlow(lesson).warmup[e.target.dataset.index]=e.target.value;save();syncStageFooter(lesson,'warmup')}}
+      if(e.target.dataset.note&&state){state.notes[e.target.dataset.note]=e.target.value;save();const lesson=findLesson(e.target.dataset.note)?.lesson;if(lesson)syncStageFooter(lesson,'activities')}
+      if(e.target.dataset.teacherMessageName){const preview=document.querySelector(`[data-teacher-preview="${e.target.dataset.teacherMessageName}"]`);if(preview)preview.textContent=e.target.value.trim()||'اسم الطالب'}
+    });
+    document.addEventListener('change',e=>{
+      if(e.target.dataset.videoConfirm&&state){const lesson=findLesson(e.target.dataset.videoConfirm)?.lesson;if(!lesson)return;getLessonFlow(lesson).videoConfirmed=e.target.value==='yes';save();syncStageFooter(lesson,'video')}
+    });
+    document.getElementById('startBtn').addEventListener('click',()=>{if(activateProfile()){showApp();dashboard()}});
+    document.getElementById('resumeQuestionBtn').addEventListener('click',()=>{if(activateProfile()){showApp();resumeQuestion()}});
+    document.getElementById('resumeLessonBtn').addEventListener('click',()=>{if(activateProfile()){showApp();resumeLesson()}});
+    document.getElementById('teacherModal').addEventListener('click',e=>{if(e.target.id==='teacherModal')closeTeacher()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeTeacher()});
+    restoreActiveSession();
+    if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+    /* APP_END */
+  </script>
+</body>
+</html>
